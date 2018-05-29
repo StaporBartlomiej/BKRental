@@ -11,12 +11,12 @@ create table user(
 	id int not null auto_increment,
     firstName varchar(200) not null,
     lastName varchar(200) not null,
-   ``` age int,
-   ``` idCardNumber VARCHAR(9) NOT NULL UNIQUE CHECK (IDNumber LIKE '^[A-Z]{3}[0-9]{6}$'),
-   ``` email varchar(200) not null,
-   ``` phone int(9) not null,
-   ``` primary key(id)
-);```
+    age int,
+    idCardNumber VARCHAR(9) NOT NULL UNIQUE CHECK (IDNumber LIKE '^[A-Z]{3}[0-9]{6}$'),
+    email varchar(200) not null,
+    phone int(9) not null,
+    primary key(id)
+);
 ```
 
 ```
