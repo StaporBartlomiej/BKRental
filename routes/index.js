@@ -174,6 +174,8 @@ router.post('/searchResult', function (req, res) {
 
 });
 
+
+
 router.post('/reserveResult', function (req,res) {
     var book_in_place = req.body.book_in_place;
     var book_in_date = req.body.book_in_date;
