@@ -4,11 +4,6 @@
     <list default="true" id="891d0b6b-e958-48b4-9a98-01928dcfcd1c" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change beforePath="$PROJECT_DIR$/../end_project/.idea/sonarlint/issuestore/3/0/30dfc417d69af8ed298ed4111dcab68f38ca7f54" afterPath="$PROJECT_DIR$/../end_project/.idea/sonarlint/issuestore/3/0/30dfc417d69af8ed298ed4111dcab68f38ca7f54" />
-      <change beforePath="$PROJECT_DIR$/../end_project/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../end_project/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/../end_project/views/editResult.jade" afterPath="$PROJECT_DIR$/../end_project/views/editResult.jade" />
-      <change beforePath="$PROJECT_DIR$/../end_project/views/reserve.jade" afterPath="$PROJECT_DIR$/../end_project/views/reserve.jade" />
-      <change beforePath="$PROJECT_DIR$/../hello2/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../hello2/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -96,8 +91,8 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="323">
-                <caret line="19" column="3" lean-forward="true" selection-start-line="19" selection-start-column="3" selection-end-line="19" selection-end-column="3" />
+              <first_editor relative-caret-position="0">
+                <caret line="0" column="2" lean-forward="false" selection-start-line="0" selection-start-column="2" selection-end-line="0" selection-end-column="2" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -388,7 +383,7 @@
       <workItem from="1526115614922" duration="672000" />
       <workItem from="1527617468727" duration="9000" />
       <workItem from="1527617563763" duration="614000" />
-      <workItem from="1527618204701" duration="302000" />
+      <workItem from="1527618204701" duration="369000" />
     </task>
     <task id="LOCAL-00001" summary="Got data from database and put it in table">
       <created>1525196314558</created>
@@ -509,11 +504,18 @@
       <option name="project" value="LOCAL" />
       <updated>1525478159699</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Added readme description">
+      <created>1527618522612</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1527618522612</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="48391000" />
+    <option name="totallyTimeSpent" value="48458000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="1602" height="872" extended-state="6" />
@@ -607,7 +609,8 @@
     <MESSAGE value="Added display reservations" />
     <MESSAGE value="Editing now works. Also added book in place and book out place to display in admin panel" />
     <MESSAGE value="Done" />
-    <option name="LAST_COMMIT_MESSAGE" value="Done" />
+    <MESSAGE value="Added readme description" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added readme description" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -963,8 +966,8 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="323">
-            <caret line="19" column="3" lean-forward="true" selection-start-line="19" selection-start-column="3" selection-end-line="19" selection-end-column="3" />
+          <first_editor relative-caret-position="0">
+            <caret line="0" column="2" lean-forward="false" selection-start-line="0" selection-start-column="2" selection-end-line="0" selection-end-column="2" />
             <folding />
           </first_editor>
           <second_editor />

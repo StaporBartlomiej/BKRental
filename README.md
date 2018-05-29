@@ -1,6 +1,6 @@
-#Car rental application
+# Car rental application
 
-###Query to create database below:
+### Query to create database below:
 
 ```create database pai_group_project;
 use pai_group_project;
