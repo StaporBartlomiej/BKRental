@@ -1,0 +1,44 @@
+doctype html
+html(lang='en')
+    head
+        meta(charset='UTF-8')
+        link(rel='stylesheet', type='text/css', href='/stylesheets/style.css')
+
+        title Search
+    body
+        ul
+            li
+                a(href='/home') Home
+
+            li
+                a(href='/flota') Flota
+
+            li
+                a(href='/admin') Administration
+            li
+                a(href='/reserve') Reserve
+            li
+                a(href='/search') Search
+        p Wybierz auto
+        p
+        form(method='POST' action='/searchResult')
+            select(name="searched_car" required=)
+                option(value="Fiat 500") Fiat 500
+                option(value="Kia Picanto") Kia Picanto
+                option(value="Opel Corsa") Opel Corsa
+                option(value="Renault Clio") Renault Clio
+                option(value="Hyundai i30") Hyundai i30
+                option(value="Kia Ceed") Kia Ceed
+                option(value="Mazda 6") Mazda 6
+                option(value="Toyota Avensis") Toyota Avensis
+                option(value="Peugeot Partner") Peugeot Partner
+                option(value="Mercedes GLC") Mercedes GLC
+                option(value="BMW X4") BMW X4
+            br
+            br
+            p Na ile dni?
+            br
+            input(type="number" name="number_of_days_being_searched_for" required)
+            br
+            br
+            input(type="submit")

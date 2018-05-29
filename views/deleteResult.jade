@@ -1,0 +1,33 @@
+doctype html
+html(lang='en')
+    head
+        meta(charset='UTF-8')
+        link(rel='stylesheet', type='text/css', href='/stylesheets/style.css')
+
+        title Delete Result
+    body
+        ul
+            li
+                a(href='/home') Home
+
+            li
+                a(href='/flota') Flota
+
+            li
+                a(href='/admin') Administration
+            li
+                a(href='/reserve') Reserve
+            li
+                a(href='/search') Search
+
+
+        ul
+            li
+                a(href='/confirm') Confirm
+            li
+                a(href='/edit') Edit
+            li
+                a(href='/delete') Delete
+            li
+                a(href='/display_reservations') Display All Reservations
+    h1 Succesfully deleted #{select_customer_to_delete}!

@@ -1,0 +1,81 @@
+doctype html
+html(lang='en')
+    head
+        meta(charset='UTF-8')
+        link(rel='stylesheet', type='text/css', href='/stylesheets/style.css')
+
+        title Reserve
+    body
+        ul
+            li
+                a(href='/home') Home
+
+            li
+                a(href='/flota') Flota
+
+            li
+                a(href='/admin') Administration
+            li
+                a(href='/reserve') Reserve
+            li
+                a(href='/search') Search
+    form(method='POST' action='/reserveResult')
+        p Odbiór
+        select(name='book_in_place' required)
+            option(value='Bialystok') Białystok
+            option(value='Bielsko_Biala') Bielsko Biała
+            option(value='Bydgoszcz') Bydgoszcz
+            option(value='Bytom') Bytom
+            option(value='Gdansk') Gdańsk
+            option(value='Katowice') Katowice
+            option(value='Kielce') Kielce
+            option(value='Krakow') Kraków
+            option(value='Warszawa') Warszawa
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        input(type="date" name="book_in_date" required)
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        input(type="time" name="book_in_time" required)
+        p Zwrot
+        select(name='book_out_place' required)
+            option(value='Bialystok') Białystok
+            option(value='Bielsko_Biala') Bielsko Biała
+            option(value='Bydgoszcz') Bydgoszcz
+            option(value='Bytom') Bytom
+            option(value='Gdansk') Gdańsk
+            option(value='Katowice') Katowice
+            option(value='Kielce') Kielce
+            option(value='Krakow') Kraków
+            option(value='Warszawa') Warszawa
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        input(type="date" name="book_out_date" required)
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        input(type="time" name="book_out_time" required)
+        br
+        br
+        p Imię:
+        input(type=text name="consumer_name" required)
+        p Nazwisko
+        input(type=text name="consumer_surname" required)
+        p Numer dowodu osobistego
+        input(type=text name="ID_card_number" required)
+        p E-mail
+        input(type=email name="consumer_email" required)
+        p Telefon Kontaktowy
+        input(type=number name="consumer_phone" required)
+        p Wybrane auto
+        select(name="chosen_car")
+            option(value="Fiat 500") Fiat 500
+            option(value="Kia Picanto") Kia Picanto
+            option(value="Opel Corsa") Opel Corsa
+            option(value="Renault Clio") Renault Clio
+            option(value="Hyundai i30") Hyundai i30
+            option(value="Kia Ceed") Kia Ceed
+            option(value="Mazda 6") Mazda 6
+            option(value="Toyota Avensis") Toyota Avensis
+            option(value="Peugeot Partner") Peugeot Partner
+            option(value="Mercedes GLC") Mercedes GLC
+            option(value="BMW X4") BMW X4
+        br
+        br
+        input(type="submit")
+

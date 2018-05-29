@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  form(method='POST' action='/')
+    input(type="text" name="country_code")
+    input(type="submit")
+  div
+    table
+      each city in dane
+        tr
+          td #{city.Name}
