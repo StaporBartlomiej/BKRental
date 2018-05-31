@@ -15,41 +15,54 @@ var model = require('../models/index');
 // db.connect();
 
 
-// router.get('/', function(req, res, next) {
-//
-//     model.BKRental.findAll({})
-//         .then(index => res.json({
-//         error: false,
-//         data: index
-//     }))
-//     .catch(error => res.json({
-//         error: true,
-//         data: [],
-//         error: error
-//     }));
-//
-//     // res.render('index', { title: 'Home' });
-// });
+router.get('/', function(req, res, next) {
 
-router.post('/', function (req, res, next) {
-   const {
-       title,
-       description
-   } = req.body;
-   model.BKRental.create({
-       title: title,
-       description: description
-   })
-       .then(bkrental => res.status(201).json({
-       error: false,
-       data: bkrental,
-       message: 'New bkrental has been created'
-   }))
+    model.BKRental.findAll({})
+        .then(index => res.json({
+        error: false,
+        data: index
+    }))
     .catch(error => res.json({
         error: true,
         data: [],
         error: error
     }));
+
+    // res.render('index', { title: 'Home' });
+});
+
+// router.post('/post', function (req, res, next) {
+//    const {
+//        title,
+//        description
+//    } = req.body;
+//    model.BKRental.create({
+//        title: title,
+//        description: description
+//    })
+//        .then(bkrental => res.status(201).json({
+//        error: false,
+//        data: bkrental,
+//        message: 'New bkrental has been created'
+//    }))
+//     .catch(error => res.json({
+//         error: true,
+//         data: [],
+//         error: error
+//     }));
+// });
+
+
+router.get('/task', function(req, res, next) {
+
+    model.BKRental.create({title: 'Bartek', description: 'xD'}).then(task => {
+        console.log(task.get({
+        plain: true
+    }))
+    })
+
+
+    // res.render('index', { title: 'Home' });
 });
 //
 // router.get('/flota', function (req,res) {
