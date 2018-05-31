@@ -58,20 +58,3 @@ create table cars(
 );
 ```
 
-```
-create table cars(
-	id int not null auto_increment,
-    carType varchar(50) not null,
-    costClass varchar(5) not null,
-    carName varchar(100) not null,
-    pricePerDay int not null,
-    airConditioning tinyint not null default 0,
-    numberOfSeats tinyint not null default 4,
-    engineType varchar(20) not null default "Benzyna",
-    transmission varchar(20) not null default "Manualna",
-    bluetooth tinyint not null default 0,
-    imageLink varchar(200) not null,
-	ownerId int default NULL references user(id),
-    primary key(id)
-);
-```
