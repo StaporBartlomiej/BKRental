@@ -55,7 +55,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/task', function(req, res, next) {
 
-    model.BKRental.create({title: 'Bartek', description: 'xD'}).then(task => {
+    model.cars.create({car_type: 'Osobowe', cost_class: 'A+', car_name: 'Kia Pinceto', price_per_day: 95, air_conditioning: true, number_of_seats: 4, engine_type: 'Benzyna',bluetooth: false}).then(task => {
         console.log(task.get({
         plain: true
     }))
