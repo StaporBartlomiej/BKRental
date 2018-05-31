@@ -1,20 +1,34 @@
 var express = require('express');
 var router = express.Router();
-var mysql = require('mysql');
+// var mysql = require('mysql');
 var DateDiff = require('date-diff');
+var model = require('../models/index');
 
-var db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '11111111',
-    database: 'pai_group_project'
 
-});
-db.connect();
+// var db = mysql.createConnection({
+//     host: 'localhost',
+//     user: 'root',
+//     password: '11111111',
+//     database: 'pai_group_project'
+//
+// });
+// db.connect();
 
 
 router.get('/', function(req, res, next) {
-    res.render('index', { title: 'Home' });
+
+    model.BKRental.findAll({})
+        .then(index => res.json({
+        error: false,
+        data: index
+    }))
+    .catch(error => res.json({
+        error: true,
+        data: [],
+        error: error
+    }));
+
+    // res.render('index', { title: 'Home' });
 });
 //
 // router.get('/flota', function (req,res) {

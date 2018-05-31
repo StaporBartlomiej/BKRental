@@ -58,3 +58,19 @@ create table cars(
 );
 ```
 
+### Issues
+Sequelize
+Unable to resolve sequelize package in [path]
+https://github.com/sequelize/cli/issues/104
+
+Solved by:
+
+npm install sequelize
+
+
+
+
+### Tutorials
+**Sequelize**:
+
+https://arjunphp.com/build-restful-api-using-node-express-sequelize/
