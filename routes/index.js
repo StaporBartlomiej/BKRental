@@ -13,7 +13,7 @@ var db = mysql.createConnection({
 db.connect();
 
 
-router.get('/home', function(req, res, next) {
+router.get('/', function(req, res, next) {
     res.render('index', { title: 'Home' });
 });
 //
