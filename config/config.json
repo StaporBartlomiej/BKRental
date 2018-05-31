@@ -1,0 +1,10 @@
+{
+  "development": {
+    "username": "root",
+    "password": "11111111",
+    "database": "pai_group_project",
+    "host": "localhost",
+    "dialect": "mysql"
+  }
+
+}

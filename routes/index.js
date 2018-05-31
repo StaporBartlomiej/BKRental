@@ -1,20 +1,68 @@
 var express = require('express');
 var router = express.Router();
-var mysql = require('mysql');
+// var mysql = require('mysql');
 var DateDiff = require('date-diff');
+var model = require('../models/index');
 
-var db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '11111111',
-    database: 'pai_group_project'
 
-});
-db.connect();
+// var db = mysql.createConnection({
+//     host: 'localhost',
+//     user: 'root',
+//     password: '11111111',
+//     database: 'pai_group_project'
+//
+// });
+// db.connect();
 
 
 router.get('/', function(req, res, next) {
-    res.render('index', { title: 'Home' });
+
+    model.BKRental.findAll({})
+        .then(index => res.json({
+        error: false,
+        data: index
+    }))
+    .catch(error => res.json({
+        error: true,
+        data: [],
+        error: error
+    }));
+
+    // res.render('index', { title: 'Home' });
+});
+
+// router.post('/post', function (req, res, next) {
+//    const {
+//        title,
+//        description
+//    } = req.body;
+//    model.BKRental.create({
+//        title: title,
+//        description: description
+//    })
+//        .then(bkrental => res.status(201).json({
+//        error: false,
+//        data: bkrental,
+//        message: 'New bkrental has been created'
+//    }))
+//     .catch(error => res.json({
+//         error: true,
+//         data: [],
+//         error: error
+//     }));
+// });
+
+
+router.get('/task', function(req, res, next) {
+
+    model.cars.create({car_type: 'Osobowe', cost_class: 'A+', car_name: 'Kia Pinceto', price_per_day: 95, air_conditioning: true, number_of_seats: 4, engine_type: 'Benzyna',bluetooth: false}).then(task => {
+        console.log(task.get({
+        plain: true
+    }))
+    })
+
+
+    // res.render('index', { title: 'Home' });
 });
 //
 // router.get('/flota', function (req,res) {
