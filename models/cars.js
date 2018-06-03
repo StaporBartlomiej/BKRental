@@ -8,7 +8,6 @@ module.exports = (sequelize, DataTypes) => {
     air_conditioning: DataTypes.BOOLEAN,
     number_of_seats: DataTypes.INTEGER,
     engine_type: DataTypes.STRING,
-    transmission: DataTypes.STRING,
     bluetooth: DataTypes.BOOLEAN
   }, {});
   cars.associate = function(models) {
