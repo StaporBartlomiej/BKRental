@@ -17,18 +17,23 @@ var model = require('../models/index');
 
 router.get('/', function(req, res, next) {
 
-    model.BKRental.findAll({})
-        .then(index => res.json({
-        error: false,
-        data: index
-    }))
-    .catch(error => res.json({
-        error: true,
-        data: [],
-        error: error
-    }));
+    console.log(model.cars);
+    console.log("dupa");
+    // model.cars.findAll({})
+    //     .then(index => res.json({
+    //     error: false,
+    //     data: index
+    // }))
+    // .catch(error => res.json({
+    //     error: true,
+    //     data: [],
+    //     error: error
+    // }));
+    console.log(res.json(model.cars.findAll({})));
+    console.log(res.json(model.cars.findAll()));
 
-    // res.render('index', { title: 'Home' });
+
+    res.render('index', { title: 'Home' });
 });
 
 // router.post('/post', function (req, res, next) {
@@ -55,7 +60,8 @@ router.get('/', function(req, res, next) {
 
 router.get('/task', function(req, res, next) {
 
-    model.cars.create({car_type: 'Osobowe', cost_class: 'A+', car_name: 'Kia Pinceto', price_per_day: 95, air_conditioning: true, number_of_seats: 4, engine_type: 'Benzyna',bluetooth: false}).then(task => {
+    model.cars.create({car_type: 'Osobowe', cost_class: 'A+', car_name: 'Kia Pinceto',
+        price_per_day: 95, air_conditioning: true, number_of_seats: 4, engine_type: 'Benzyna',bluetooth: false}).then(task => {
         console.log(task.get({
         plain: true
     }))
@@ -201,59 +207,59 @@ router.get('/task', function(req, res, next) {
 //
 // });
 //
-// router.post('/reserveResult', function (req,res) {
-//     var book_in_place = req.body.book_in_place;
-//     var book_in_date = req.body.book_in_date;
-//     var book_in_time = req.body.book_in_time;
-//     var book_out_place = req.body.book_out_place;
-//     var book_out_date = req.body.book_out_date;
-//     var book_out_time = req.body.book_out_time;
-//     var consumer_name = req.body.consumer_name;
-//     var consumer_surname = req.body.consumer_surname;
-//     var consumer_email = req.body.consumer_email;
-//     var consumer_phone = req.body.consumer_phone;
-//     var chosen_car = req.body.chosen_car;
-//     var id_card_number = req.body.ID_card_number;
-//     var price;
-//
-//     var book_in_date_converted_to_js_format = new Date(book_in_date);
-//     var book_out_date_converted_to_js_format = new Date(book_out_date);
-//     var car_price_query = "Select price_per_day from cars where car_name='" + chosen_car + "';";
-//
-//     var total_days_car_is_rented = new DateDiff(book_out_date_converted_to_js_format, book_in_date_converted_to_js_format);
-//
-//
-//     db.query(car_price_query,function (error,result) {
-//
-//         price = result[0].price_per_day;
-//         var total_price = price * total_days_car_is_rented.days();
-//
-//
-//         var insert_query = "Insert into reservations(consumer_name,consumer_surname,id_card_number," +
-//             "consumer_email,consumer_phone,book_in_date, book_out_date, total_price,book_in_time, book_out_time, book_in_place, book_out_place) values" +
-//             "('" + consumer_name + "', '" + consumer_surname + "', '" + id_card_number + "', '" + consumer_email + "', " + consumer_phone + ", '" +
-//             book_in_date + "', '" + book_out_date + "'," + total_price + ",'" + book_in_time + "','" + book_out_time + "','" + book_in_place +
-//             "','" + book_out_place + "');";
-//         console.log("Query:" + insert_query);
-//
-//         db.query(insert_query,function (error, result) {
-//
-//         })
-//     });
-//
-//     res.render('reserveResult', {title: "Reservation Details"});
-//
-// });
-//
-//
-// router.get('/reserve', function (req,res) {
-//
-//
-//
-//
-//     res.render('reserve', {title: "Reserve" });  //test: req.body.book_out_place
-//
-// });
+router.post('/reserveResult', function (req,res) {
+    var book_in_place = req.body.book_in_place;
+    var book_in_date = req.body.book_in_date;
+    var book_in_time = req.body.book_in_time;
+    var book_out_place = req.body.book_out_place;
+    var book_out_date = req.body.book_out_date;
+    var book_out_time = req.body.book_out_time;
+    var consumer_name = req.body.consumer_name;
+    var consumer_surname = req.body.consumer_surname;
+    var consumer_email = req.body.consumer_email;
+    var consumer_phone = req.body.consumer_phone;
+    var chosen_car = req.body.chosen_car;
+    var id_card_number = req.body.ID_card_number;
+    var price;
+
+    var book_in_date_converted_to_js_format = new Date(book_in_date);
+    var book_out_date_converted_to_js_format = new Date(book_out_date);
+    var car_price_query = "Select price_per_day from cars where car_name='" + chosen_car + "';";
+
+    var total_days_car_is_rented = new DateDiff(book_out_date_converted_to_js_format, book_in_date_converted_to_js_format);
+
+
+    db.query(car_price_query,function (error,result) {
+
+        price = result[0].price_per_day;
+        var total_price = price * total_days_car_is_rented.days();
+
+
+        var insert_query = "Insert into reservations(consumer_name,consumer_surname,id_card_number," +
+            "consumer_email,consumer_phone,book_in_date, book_out_date, total_price,book_in_time, book_out_time, book_in_place, book_out_place) values" +
+            "('" + consumer_name + "', '" + consumer_surname + "', '" + id_card_number + "', '" + consumer_email + "', " + consumer_phone + ", '" +
+            book_in_date + "', '" + book_out_date + "'," + total_price + ",'" + book_in_time + "','" + book_out_time + "','" + book_in_place +
+            "','" + book_out_place + "');";
+        console.log("Query:" + insert_query);
+
+        db.query(insert_query,function (error, result) {
+
+        })
+    });
+
+    res.render('reserveResult', {title: "Reservation Details"});
+
+});
+
+
+router.get('/reserve', function (req,res) {
+
+
+
+
+    res.render('reserve', {title: "Reserve" });  //test: req.body.book_out_place
+
+});
 //
 // router.get('/display_reservations', function (req,res) {
 //
