@@ -18,17 +18,17 @@ function checkConnectionWithDB(model){
 function dropTables(user_model,car_type_model,reservations_model, cars_model){
     user_model.drop();
     car_type_model.drop();
-    reservations_model.drop();
     cars_model.drop();
+    reservations_model.drop();
 }
 function generateTables(user_model,car_type_model,reservations_model,cars_model){
     cars_model.sync();
-    user_model.sync();
     car_type_model.sync();
+    user_model.sync();
     reservations_model.sync();
 }
 checkConnectionWithDB(model);
-dropTables(user_model,car_type_model,reservations_model, cars_model);
+// dropTables(user_model,car_type_model,reservations_model, cars_model);
 generateTables(user_model,car_type_model,reservations_model,cars_model);
 
 
