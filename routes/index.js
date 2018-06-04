@@ -1,10 +1,18 @@
 var express = require('express');
+const Sequelize = require('sequelize');
 var router = express.Router();
 // var mysql = require('mysql');
 var DateDiff = require('date-diff');
 var model = require('../models/index');
+const user = model.sequelize.import("../models/user.js");
+const car_type_model = model.sequelize.import("../models/car_type.js");
+const reservations = model.sequelize.import("../models/reservations.js");
 
 
+
+user.sync();
+car_type_model.sync();
+reservations.sync();
 // var db = mysql.createConnection({
 //     host: 'localhost',
 //     user: 'root',
@@ -14,11 +22,14 @@ var model = require('../models/index');
 // });
 // db.connect();
 
-
 router.get('/', function(req, res, next) {
+    model.sequelize.authenticate()
+        .then(() => {
+        console.log('connected to DB');
+});
 
-    console.log(model.cars);
-    console.log("dupa");
+    // console.log(model.cars);
+    // console.log("dupa");
     // model.cars.findAll({})
     //     .then(index => res.json({
     //     error: false,
@@ -29,8 +40,8 @@ router.get('/', function(req, res, next) {
     //     data: [],
     //     error: error
     // }));
-    console.log(res.json(model.cars.findAll({})));
-    console.log(res.json(model.cars.findAll()));
+    // console.log(res.json(model.cars.findAll({})));
+    // console.log(res.json(model.cars.findAll()));
 
 
     res.render('index', { title: 'Home' });

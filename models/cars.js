@@ -1,7 +1,12 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var cars = sequelize.define('cars', {
-    car_type: DataTypes.STRING,
+    id:{
+          type: DataTypes.INTEGER,
+          primaryKey: true,
+          autoIncrement: true
+      },
+    car_type: DataTypes.INTEGER,
     cost_class: DataTypes.STRING,
     car_name: DataTypes.STRING,
     price_per_day: DataTypes.INTEGER,
