@@ -4,23 +4,23 @@ var router = express.Router();
 // var mysql = require('mysql');
 var DateDiff = require('date-diff');
 var model = require('../models/index');
-const user = model.sequelize.import("../models/user.js");
+const user_model = model.sequelize.import("../models/user.js");
 const car_type_model = model.sequelize.import("../models/car_type.js");
-const reservations = model.sequelize.import("../models/reservations.js");
+const reservations_model = model.sequelize.import("../models/reservations.js");
 
 
-
-user.sync();
-car_type_model.sync();
-reservations.sync();
-// var db = mysql.createConnection({
-//     host: 'localhost',
-//     user: 'root',
-//     password: '11111111',
-//     database: 'pai_group_project'
-//
-// });
-// db.connect();
+function dropTables(user_model,car_type_model,reservations_model){
+    user_model.drop();
+    car_type_model.drop();
+    reservations_model.drop();
+}
+function generateTables(user_model,car_type_model,reservations_model){
+    user_model.sync();
+    car_type_model.sync();
+    reservations_model.sync();
+}
+dropTables(user_model,car_type_model,reservations_model);
+generateTables(user_model,car_type_model,reservations_model);
 
 router.get('/', function(req, res, next) {
     model.sequelize.authenticate()
