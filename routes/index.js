@@ -8,7 +8,12 @@ const user_model = model.sequelize.import("../models/user.js");
 const car_type_model = model.sequelize.import("../models/car_type.js");
 const reservations_model = model.sequelize.import("../models/reservations.js");
 
-
+function checkConnectionWithDB(model){
+    model.sequelize.authenticate()
+        .then(() => {
+        console.log('connected to DB');
+});
+}
 function dropTables(user_model,car_type_model,reservations_model){
     user_model.drop();
     car_type_model.drop();
@@ -19,14 +24,12 @@ function generateTables(user_model,car_type_model,reservations_model){
     car_type_model.sync();
     reservations_model.sync();
 }
+checkConnectionWithDB(model);
 dropTables(user_model,car_type_model,reservations_model);
 generateTables(user_model,car_type_model,reservations_model);
 
 router.get('/', function(req, res, next) {
-    model.sequelize.authenticate()
-        .then(() => {
-        console.log('connected to DB');
-});
+
 
     // console.log(model.cars);
     // console.log("dupa");

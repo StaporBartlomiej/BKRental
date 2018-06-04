@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="891d0b6b-e958-48b4-9a98-01928dcfcd1c" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/20180531173237-create-bk-rental.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/20180531202557-create-cars.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/20180604170752-create-user.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/20180604170931-create-cars.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/cars.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/cars.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/index.js" afterDir="false" />
-    </list>
+    <list default="true" id="891d0b6b-e958-48b4-9a98-01928dcfcd1c" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -88,8 +79,8 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="26" column="15" selection-start-line="26" selection-start-column="15" selection-end-line="26" selection-end-column="15" />
+            <state relative-caret-position="435">
+              <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
             </state>
           </provider>
         </entry>
@@ -186,11 +177,11 @@
       <path value="$PROJECT_DIR$/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" fullScreen="true">
     <option name="x" value="-268" />
-    <option name="y" value="-1057" />
+    <option name="y" value="-1080" />
     <option name="width" value="1920" />
-    <option name="height" value="1057" />
+    <option name="height" value="1080" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -346,7 +337,7 @@
       <workItem from="1527783334472" duration="41000" />
       <workItem from="1527783386182" duration="426000" />
       <workItem from="1527783859207" duration="7413000" />
-      <workItem from="1528130337201" duration="3842000" />
+      <workItem from="1528130337201" duration="4458000" />
     </task>
     <task id="LOCAL-00001" summary="Got data from database and put it in table">
       <created>1525196314558</created>
@@ -530,11 +521,25 @@
       <option name="project" value="LOCAL" />
       <updated>1528132763109</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="tables are now being auto generated if they dont exist fromn code">
+      <created>1528137502714</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1528137502714</updated>
+    </task>
+    <task id="LOCAL-00028" summary="tables are now dropped at generated new at the start of program">
+      <created>1528137899368</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1528137899368</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="64572000" />
+    <option name="totallyTimeSpent" value="65188000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-268" y="-1057" width="1920" height="1057" extended-state="6" />
@@ -612,7 +617,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Got data from database and put it in table" />
     <MESSAGE value="Fixed css and menu is now being displayed properly on 2 tabs(without admin tab)" />
     <MESSAGE value="Cars are now being displayed properly in 2nd tab" />
     <MESSAGE value="Home font mostly done, css left" />
@@ -636,7 +640,9 @@
     <MESSAGE value="Post also works" />
     <MESSAGE value="updated readme, created table user" />
     <MESSAGE value="updated readme, created table reservations" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated readme, created table reservations" />
+    <MESSAGE value="tables are now being auto generated if they dont exist fromn code" />
+    <MESSAGE value="tables are now dropped at generated new at the start of program" />
+    <option name="LAST_COMMIT_MESSAGE" value="tables are now dropped at generated new at the start of program" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/views/admin.jade">
@@ -891,8 +897,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="15" selection-start-line="26" selection-start-column="15" selection-end-line="26" selection-end-column="15" />
+        <state relative-caret-position="435">
+          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
         </state>
       </provider>
     </entry>
