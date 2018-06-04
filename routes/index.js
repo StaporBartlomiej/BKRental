@@ -7,6 +7,7 @@ var model = require('../models/index');
 const user_model = model.sequelize.import("../models/user.js");
 const car_type_model = model.sequelize.import("../models/car_type.js");
 const reservations_model = model.sequelize.import("../models/reservations.js");
+const cars_model = model.sequelize.import("../models/cars.js");
 
 function checkConnectionWithDB(model){
     model.sequelize.authenticate()
@@ -14,19 +15,25 @@ function checkConnectionWithDB(model){
         console.log('connected to DB');
 });
 }
-function dropTables(user_model,car_type_model,reservations_model){
+function dropTables(user_model,car_type_model,reservations_model, cars_model){
     user_model.drop();
     car_type_model.drop();
     reservations_model.drop();
+    cars_model.drop();
 }
-function generateTables(user_model,car_type_model,reservations_model){
+function generateTables(user_model,car_type_model,reservations_model,cars_model){
+    cars_model.sync();
     user_model.sync();
     car_type_model.sync();
     reservations_model.sync();
 }
 checkConnectionWithDB(model);
-dropTables(user_model,car_type_model,reservations_model);
-generateTables(user_model,car_type_model,reservations_model);
+dropTables(user_model,car_type_model,reservations_model, cars_model);
+generateTables(user_model,car_type_model,reservations_model,cars_model);
+
+
+// car_type_model.hasMany(model.cars, {foreignKey: 'car_type'});
+// model.cars.belongsTo(car_type, {foreignKey: 'car_type'});
 
 router.get('/', function(req, res, next) {
 
