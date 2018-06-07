@@ -9,33 +9,37 @@ const car_type_model = model.sequelize.import("../models/car_type.js");
 const reservations_model = model.sequelize.import("../models/reservations.js");
 const cars_model = model.sequelize.import("../models/cars.js");
 
-function checkConnectionWithDB(model){
+function checkConnectionWithDB(model) {
     model.sequelize.authenticate()
         .then(() => {
         console.log('connected to DB');
-});
+})
+    ;
 }
-function dropTables(user_model,car_type_model,reservations_model, cars_model){
+
+function dropTables(user_model, car_type_model, reservations_model, cars_model) {
     user_model.drop();
     car_type_model.drop();
     cars_model.drop();
     reservations_model.drop();
 }
-function generateTables(user_model,car_type_model,reservations_model,cars_model){
+
+function generateTables(user_model, car_type_model, reservations_model, cars_model) {
     cars_model.sync();
     car_type_model.sync();
     user_model.sync();
     reservations_model.sync();
 }
+
 checkConnectionWithDB(model);
 // dropTables(user_model,car_type_model,reservations_model, cars_model);
-generateTables(user_model,car_type_model,reservations_model,cars_model);
+generateTables(user_model, car_type_model, reservations_model, cars_model);
 
 
 // car_type_model.hasMany(model.cars, {foreignKey: 'car_type'});
 // model.cars.belongsTo(car_type, {foreignKey: 'car_type'});
 
-router.get('/', function(req, res, next) {
+router.get('/', function (req, res, next) {
 
 
     // console.log(model.cars);
@@ -54,7 +58,7 @@ router.get('/', function(req, res, next) {
     // console.log(res.json(model.cars.findAll()));
 
 
-    res.render('index', { title: 'Home' });
+    res.render('index', {title: 'Home'});
 });
 
 // router.post('/post', function (req, res, next) {
@@ -79,30 +83,46 @@ router.get('/', function(req, res, next) {
 // });
 
 
-router.get('/task', function(req, res, next) {
+router.get('/task', function (req, res, next) {
 
-    model.cars.create({car_type: 'Osobowe', cost_class: 'A+', car_name: 'Kia Pinceto',
-        price_per_day: 95, air_conditioning: true, number_of_seats: 4, engine_type: 'Benzyna',bluetooth: false}).then(task => {
+    model.cars.create({
+        car_type: 'Osobowe', cost_class: 'A+', car_name: 'Kia Pinceto',
+        price_per_day: 95, air_conditioning: true, number_of_seats: 4, engine_type: 'Benzyna', bluetooth: false
+    }).then(task => {
         console.log(task.get({
         plain: true
     }))
-    })
+})
 
 
     // res.render('index', { title: 'Home' });
 });
 //
-// router.get('/flota', function (req,res) {
-//     var query = "select * from cars order by cost_class;";
+router.get('/flota', function (req, res) {
+
+    var i = 0;
+
+    cars_model.findAll().then(cars => {
+
+    for (i; i < cars.length;i++){
+        console.log(cars[i].car_name);
+    res.render('flota', {title: 'flota', car: cars[i].car_name});
+    }
+});
+
+
+
+// var query = "select * from cars order by cost_class;";
 //
-//     // res.render('index', { title: 'Express'});t
-//     db.query(query, function(error, dane) {
-//         console.log(dane[0].car_name);
-//         res.render('flota', {title: 'Express', dane: dane});
-//     });
-//     // res.render('index2', {title: 'flota'});
-//
+// // res.render('index', { title: 'Express'});t
+// db.query(query, function(error, dane) {
+//     console.log(dane[0].car_name);
+//     res.render('flota', {title: 'Express', dane: dane});
 // });
+;
+
+})
+;
 
 
 // router.get('/admin', function (req,res) {
@@ -228,7 +248,7 @@ router.get('/task', function(req, res, next) {
 //
 // });
 //
-router.post('/reserveResult', function (req,res) {
+router.post('/reserveResult', function (req, res) {
     var book_in_place = req.body.book_in_place;
     var book_in_date = req.body.book_in_date;
     var book_in_time = req.body.book_in_time;
@@ -250,7 +270,7 @@ router.post('/reserveResult', function (req,res) {
     var total_days_car_is_rented = new DateDiff(book_out_date_converted_to_js_format, book_in_date_converted_to_js_format);
 
 
-    db.query(car_price_query,function (error,result) {
+    db.query(car_price_query, function (error, result) {
 
         price = result[0].price_per_day;
         var total_price = price * total_days_car_is_rented.days();
@@ -263,7 +283,7 @@ router.post('/reserveResult', function (req,res) {
             "','" + book_out_place + "');";
         console.log("Query:" + insert_query);
 
-        db.query(insert_query,function (error, result) {
+        db.query(insert_query, function (error, result) {
 
         })
     });
@@ -273,12 +293,10 @@ router.post('/reserveResult', function (req,res) {
 });
 
 
-router.get('/reserve', function (req,res) {
+router.get('/reserve', function (req, res) {
 
 
-
-
-    res.render('reserve', {title: "Reserve" });  //test: req.body.book_out_place
+    res.render('reserve', {title: "Reserve"});  //test: req.body.book_out_place
 
 });
 //
