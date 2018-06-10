@@ -16,9 +16,9 @@ function checkConnectionWithDB(model){
 });
 }
 function dropTables(user_model,car_type_model,reservations_model, cars_model){
-    user_model.drop();
-    car_type_model.drop();
     cars_model.drop();
+    car_type_model.drop();
+    user_model.drop();
     reservations_model.drop();
 }
 function generateTables(user_model,car_type_model,reservations_model,cars_model){
@@ -28,7 +28,7 @@ function generateTables(user_model,car_type_model,reservations_model,cars_model)
     reservations_model.sync();
 }
 checkConnectionWithDB(model);
-// dropTables(user_model,car_type_model,reservations_model, cars_model);
+//dropTables(user_model,car_type_model,reservations_model, cars_model);
 generateTables(user_model,car_type_model,reservations_model,cars_model);
 
 
@@ -86,7 +86,7 @@ router.get('/task', function(req, res, next) {
         console.log(task.get({
         plain: true
     }))
-    })
+    });
 
 
     // res.render('index', { title: 'Home' });
@@ -294,5 +294,110 @@ router.get('/reserve', function (req,res) {
 //     // res.render('display_reservations', {title: "Display of Reservations" });  //test: req.body.book_out_place
 //
 // });
+
+// Check if authenticated
+var auth = function(req, res, next) {
+    if (req.session && req.session.user)
+        return next();
+    else {
+        res.redirect('/login');
+    }
+};
+
+// Handle user login
+router.get('/login', function (req, res, next) {
+    if (req.session && req.session.user) {
+        // Here - if the user is already authenticated will redirect him to user panel
+        res.send("sasdfa");
+    } else {
+        res.render('login');
+    }
+});
+
+// Handle user auth
+router.post('/login', function (req, res) {
+
+    if (req.body.email && req.body.password) {
+        user_model.findOne({
+            where: {
+                email: req.body.email,
+                password: req.body.password
+            }
+        }).then(function (users) {
+            if (users != null) {
+                req.session.user = users.email;
+                console.log("User [ id=",users.email,"] authenticated");
+                res.redirect('/');
+            } else {
+                res.render('login', {fail: "Incorrect Username or password"});
+            }
+        });
+    } else if (req.body.email) {
+      res.render('login', {
+          user: req.body.email,
+          error: "Enter password."
+      });
+    } else {
+        res.render('login', {
+            error: "The username you’ve entered doesn’t match any account."
+        })
+    }
+});
+
+// Handle user logout
+router.get('/logout', function(req, res) {
+   req.session.destroy();
+   res.redirect('/');
+});
+
+
+// Handle user registration
+router.get('/register', function(req, res) {
+    if (req.session && req.session.user) {
+        // Here - if the user is already authenticated will redirect him to user panel
+        res.send("sasdfa");
+    } else {
+        res.render('register')
+    }
+
+});
+
+
+// Handle registration auth
+router.post('/register', function(req, res) {
+    console.log(req.body);
+
+    user_model.findOne({
+        where: {
+            email: req.body.email
+        }
+    }).then(function (email) {
+        if (email != null) {
+            res.send("User exists already");
+        } else {
+            var user_data = {
+                password : req.body.password,
+                firstName : req.body.firstname,
+                lastName : req.body.lastname,
+                email: req.body.email
+            };
+
+            var user = new user_model(user_data);
+            user.save();
+        }
+    });
+    res.render('login');
+});
+
+// function checkIfEmailExists(email) {
+//     return user_model.findOne({email: email}).then(function(result) {
+//         return result !== null;
+//     });
+// }
+
+// Handle user panel
+router.get('/user_panel', auth, function(req, res) {
+    res.send("You can see me if you logged in :)");
+});
 
 module.exports = router;

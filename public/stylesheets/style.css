@@ -75,3 +75,11 @@ p {
     background-color: green;
     color: white;
 }
+
+#msgDiv {
+    display: none;
+}
+
+.top-buffer {
+    margin-top:45px;
+}
