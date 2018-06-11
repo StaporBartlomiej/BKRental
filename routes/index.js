@@ -104,10 +104,12 @@ router.get('/flota', function (req, res) {
 
     cars_model.findAll().then(cars => {
 
-    for (i; i < cars.length;i++){
-        console.log(cars[i].car_name);
-    res.render('flota', {title: 'flota', car: cars[i].car_name});
-    }
+        console.log(cars);
+    // for (i; i < cars.length;i++){
+    //     console.log(cars[i].car_name);
+    // }
+    res.render('flota', {title: 'flota', car: cars});
+    // res.render('flota', {title: 'flota', car: cars[0].car_name});
 });
 
 

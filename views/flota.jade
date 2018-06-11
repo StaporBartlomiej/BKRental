@@ -21,7 +21,11 @@ html(lang='en')
             li
                 a(href='/search') Search
 
-    p car_name: #{car}
+    div
+        each item in car
+            option(value=row) #{row.car_name}
+            option(value=row) #{row.cost_class}
+
 
 
 
