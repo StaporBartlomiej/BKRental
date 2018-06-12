@@ -1,22 +1,45 @@
 var express = require('express');
+const Sequelize = require('sequelize');
 var router = express.Router();
 // var mysql = require('mysql');
 var DateDiff = require('date-diff');
 var model = require('../models/index');
+const user_model = model.sequelize.import("../models/user.js");
+const car_type_model = model.sequelize.import("../models/car_type.js");
+const reservations_model = model.sequelize.import("../models/reservations.js");
+const cars_model = model.sequelize.import("../models/cars.js");
+
+function checkConnectionWithDB(model){
+    model.sequelize.authenticate()
+        .then(() => {
+        console.log('connected to DB');
+});
+}
+function dropTables(user_model,car_type_model,reservations_model, cars_model){
+    user_model.drop();
+    car_type_model.drop();
+    cars_model.drop();
+    reservations_model.drop();
+}
+function generateTables(user_model,car_type_model,reservations_model,cars_model){
+    cars_model.sync();
+    car_type_model.sync();
+    user_model.sync();
+    reservations_model.sync();
+}
+checkConnectionWithDB(model);
+// dropTables(user_model,car_type_model,reservations_model, cars_model);
+generateTables(user_model,car_type_model,reservations_model,cars_model);
 
 
-// var db = mysql.createConnection({
-//     host: 'localhost',
-//     user: 'root',
-//     password: '11111111',
-//     database: 'pai_group_project'
-//
-// });
-// db.connect();
-
+// car_type_model.hasMany(model.cars, {foreignKey: 'car_type'});
+// model.cars.belongsTo(car_type, {foreignKey: 'car_type'});
 
 router.get('/', function(req, res, next) {
 
+
+    // console.log(model.cars);
+    // console.log("dupa");
     // model.cars.findAll({})
     //     .then(index => res.json({
     //     error: false,
@@ -27,22 +50,11 @@ router.get('/', function(req, res, next) {
     //     data: [],
     //     error: error
     // }));
-
-    model.cars.findAll().then(cars => res.json({
-       data: cars
-    }))
-    .catch(error => res.json({
-        error: true,
-        data: [],
-        error: error
-    }));
-
-    // res.json(model.cars.findAll());
-    // console.log(cars);
+    // console.log(res.json(model.cars.findAll({})));
+    // console.log(res.json(model.cars.findAll()));
 
 
-    res.render('index', { title: 'Home'});
-
+    res.render('index', { title: 'Home' });
 });
 
 // router.post('/post', function (req, res, next) {
@@ -69,7 +81,8 @@ router.get('/', function(req, res, next) {
 
 router.get('/task', function(req, res, next) {
 
-    model.cars.create({car_type: 'Osobowe', cost_class: 'A+', car_name: 'Kia Pinceto', price_per_day: 95, air_conditioning: true, number_of_seats: 4, engine_type: 'Benzyna',bluetooth: false}).then(task => {
+    model.cars.create({car_type: 'Osobowe', cost_class: 'A+', car_name: 'Kia Pinceto',
+        price_per_day: 95, air_conditioning: true, number_of_seats: 4, engine_type: 'Benzyna',bluetooth: false}).then(task => {
         console.log(task.get({
         plain: true
     }))

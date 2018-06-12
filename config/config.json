@@ -3,8 +3,7 @@
     "username": "root",
     "password": "11111111",
     "database": "pai_group_project",
-    "host": "localhost",
+    "host": "127.0.0.1",
     "dialect": "mysql"
   }
-
 }
