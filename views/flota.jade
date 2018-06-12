@@ -21,11 +21,36 @@ html(lang='en')
             li
                 a(href='/search') Search
 
-    div
-        each item in car
-            option(value=row) #{row.car_name}
-            option(value=row) #{row.cost_class}
+    div #{cars[0].car_name}
+    p test
+    tbody
+        h1 Flota
+        div
+            each city in cars
+                p #{city.car_name}
+                p Typ: #{city.car_type}
+                p Klasa cenowa: #{city.cost_class}
+                p Cena za dzień: #{city.price_per_day}
+                p Klimatyzacja: #{city.air_conditioning}
+                p Ilość siedzień: #{city.number_of_seats}
+                p Silnik: #{city.engine_type}
+                p Skrzynia biegów:#{city.transmission}
+                p Bluetooth: #{city.bluetooth}
 
 
 
 
+    //
+    //
+    //h1 Flota
+    //    div
+    //        h1 #{dane[0].car_name}
+    //        img(src=dane[0].image_link, alt=dane[0].car_name)
+    //        p Typ: #{dane[0].car_type}
+    //        p Klasa cenowa: #{dane[0].cost_class}
+    //        p Cena za dzień: #{dane[0].price_per_day}
+    //        p Klimatyzacja: #{dane[0].air_conditioning}
+    //        p Ilość Siedzień: #{dane[0].number_of_seats}
+    //        p Silnik: #{dane[0].engine_type}
+    //        p Skrzynia biegów: #{dane[0].transmission}
+    //        p Bluetooth: #{dane[0].bluetooth}

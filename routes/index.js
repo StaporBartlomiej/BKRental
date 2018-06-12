@@ -2,6 +2,7 @@ var express = require('express');
 const Sequelize = require('sequelize');
 var router = express.Router();
 // var mysql = require('mysql');
+
 var DateDiff = require('date-diff');
 var model = require('../models/index');
 const user_model = model.sequelize.import("../models/user.js");
@@ -106,10 +107,11 @@ router.get('/flota', function (req, res) {
 
         console.log(cars);
     // for (i; i < cars.length;i++){
+    //     JSON.stringify(ca)
     //     console.log(cars[i].car_name);
     // }
-    res.render('flota', {title: 'flota', car: cars});
-    // res.render('flota', {title: 'flota', car: cars[0].car_name});
+    res.render('flota', {title: 'flota', cars: cars});
+    // res.render('flota', {title: 'flota', cars: cars[0].car_name});
 });
 
 
