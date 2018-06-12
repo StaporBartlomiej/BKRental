@@ -84,11 +84,17 @@ router.get('/', function (req, res, next) {
 // });
 
 
-router.get('/task', function (req, res, next) {
+router.get('/addCar', function (req, res, next) {
 
     model.cars.create({
-        car_type: 'Osobowe', cost_class: 'A+', car_name: 'Kia Pinceto',
-        price_per_day: 95, air_conditioning: true, number_of_seats: 4, engine_type: 'Benzyna', bluetooth: false
+        cost_class: 'A+',
+        car_name: 'Kia Pinceto',
+        price_per_day: 95,
+        air_conditioning: true,
+        number_of_seats: 4,
+        engine_type: 'Benzyna',
+        bluetooth: false,
+        img_link: '/images/kia_pinceto.png'
     }).then(task => {
         console.log(task.get({
         plain: true
@@ -98,6 +104,28 @@ router.get('/task', function (req, res, next) {
 
     // res.render('index', { title: 'Home' });
 });
+
+router.get('/addCar2', function (req, res, next) {
+
+    model.cars.create({
+        cost_class: 'A+',
+        car_name: 'Mazda 6',
+        price_per_day: 95,
+        air_conditioning: true,
+        number_of_seats: 4,
+        engine_type: 'Benzyna',
+        bluetooth: false,
+        img_link: '/images/mazda_6.png'
+    }).then(task => {
+        console.log(task.get({
+        plain: true
+    }))
+})
+
+
+    // res.render('index', { title: 'Home' });
+});
+
 //
 router.get('/flota', function (req, res) {
 

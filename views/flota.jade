@@ -3,7 +3,6 @@ html(lang='en')
     head
         meta(charset='UTF-8')
         link(rel='stylesheet', type='text/css', href='/stylesheets/style.css')
-        script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js')
 
         title Home
     body
@@ -21,13 +20,15 @@ html(lang='en')
             li
                 a(href='/search') Search
 
-    div #{cars[0].car_name}
-    p test
+
     tbody
         h1 Flota
+        img(src='public/images/kia_pinceto.png')
         div
             each city in cars
                 p #{city.car_name}
+                img(src=city.img_link, alt=city.car_name)
+                p #{city.img_link}
                 p Typ: #{city.car_type}
                 p Klasa cenowa: #{city.cost_class}
                 p Cena za dzień: #{city.price_per_day}
