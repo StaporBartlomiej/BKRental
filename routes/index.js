@@ -34,7 +34,7 @@ function generateTables(user_model, car_type_model, reservations_model, cars_mod
 
 checkConnectionWithDB(model);
 // dropTables(user_model,car_type_model,reservations_model, cars_model);
-generateTables(user_model, car_type_model, reservations_model, cars_model);
+generateTables(user_model,car_type_model,reservations_model,cars_model);
 
 
 // car_type_model.hasMany(model.cars, {foreignKey: 'car_type'});
