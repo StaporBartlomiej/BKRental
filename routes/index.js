@@ -79,10 +79,39 @@ router.get('/', function(req, res, next) {
 // });
 
 
-router.get('/task', function(req, res, next) {
+router.get('/addCar', function (req, res, next) {
 
-    model.cars.create({car_type: 'Osobowe', cost_class: 'A+', car_name: 'Kia Pinceto',
-        price_per_day: 95, air_conditioning: true, number_of_seats: 4, engine_type: 'Benzyna',bluetooth: false}).then(task => {
+    model.cars.create({
+        cost_class: 'A+',
+        car_name: 'Kia Pinceto',
+        price_per_day: 95,
+        air_conditioning: true,
+        number_of_seats: 4,
+        engine_type: 'Benzyna',
+        bluetooth: false,
+        img_link: '/images/kia_pinceto.png'
+    }).then(task => {
+        console.log(task.get({
+        plain: true
+    }))
+})
+
+
+    // res.render('index', { title: 'Home' });
+});
+
+router.get('/addCar2', function (req, res, next) {
+
+    model.cars.create({
+        cost_class: 'A+',
+        car_name: 'Mazda 6',
+        price_per_day: 95,
+        air_conditioning: true,
+        number_of_seats: 4,
+        engine_type: 'Benzyna',
+        bluetooth: false,
+        img_link: '/images/mazda_6.png'
+    }).then(task => {
         console.log(task.get({
         plain: true
     }))
@@ -244,10 +273,8 @@ function insertIntoReservations(bookInDate, bookOutDate, bookInPlace, bookOutPla
 router.post('/reserveResult', function (req,res) {
     var book_in_place = req.body.book_in_place;
     var book_in_date = req.body.book_in_date;
-    var book_in_time = req.body.book_in_time;
     var book_out_place = req.body.book_out_place;
     var book_out_date = req.body.book_out_date;
-    var book_out_time = req.body.book_out_time;
     var consumer_name = req.body.consumer_name;
     var consumer_surname = req.body.consumer_surname;
     var consumer_email = req.body.consumer_email;
@@ -268,6 +295,14 @@ router.post('/reserveResult', function (req,res) {
     var book_in_date_converted_to_js_format = new Date(book_in_date);
     var book_out_date_converted_to_js_format = new Date(book_out_date);
     var car_price_query = "Select price_per_day from cars where car_name='" + chosen_car + "';";
+    cars_model.findOne({
+        where: {car_name: chosen_car },
+        attributes: ['price_per_day']
+    }).then( item => {
+        console.log("Chosen car: " + chosen_car);
+        console.log("Chosen car price per day: " + item.price_per_day);
+        console.log(item);
+    })
 
     var total_days_car_is_rented = new DateDiff(book_out_date_converted_to_js_format, book_in_date_converted_to_js_format);
 
