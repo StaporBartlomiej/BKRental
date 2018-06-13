@@ -121,6 +121,7 @@ router.post('/reserveResult', function (req,res) {
         // @TODO User ID get from session and insert below to var userid
         var userId = null;
         insertIntoReservations(userId,car.id, book_in_date,book_out_date, totalPrice, isApprovedByAdmin, book_in_place, book_out_place);
+        model.sequelize.query("UPDATE cars SET available = " + car.id);
         res.render('reserveResult', {title: "Reservation Details"});
     }})
 
