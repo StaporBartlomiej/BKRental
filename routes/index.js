@@ -23,7 +23,7 @@ router.get('/addCar', function (req, res, next) {
 
 })
 
-});
+
 
 function createCars() {
     model.cars.create({
@@ -59,33 +59,8 @@ function createCars() {
         plain: true
     }))
 })
-}
+};
 
-    // res.render('index', { title: 'Home' });
-});
-
-router.get('/addCar2', function (req, res, next) {
-
-    model.cars.create({
-        cost_class: 'A+',
-        car_name: 'Mazda 6',
-        price_per_day: 95,
-        air_conditioning: true,
-        number_of_seats: 4,
-        engine_type: 'Benzyna',
-        bluetooth: false,
-        img_link: '/images/mazda_6.png'
-    }).then(task => {
-        console.log(task.get({
-        plain: true
-    }))
-})
-
-
-    // res.render('index', { title: 'Home' });
-});
-
-//
 router.get('/flota', function (req, res) {
 
     cars_model.findAll().then(cars => {
@@ -93,8 +68,8 @@ router.get('/flota', function (req, res) {
         console.log(cars);
     res.render('flota', {title: 'flota', cars: cars});
 });
-})
-;
+});
+
 
 function insertIntoReservations(userId, carId, bookInDate, bookOutDate, totalPrice, isApprovedByAdmin, bookInPlace, bookOutPlace){
     reservations_model.create({
