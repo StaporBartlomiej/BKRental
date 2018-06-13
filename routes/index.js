@@ -30,7 +30,7 @@ function generateTables(user_model,car_type_model,reservations_model,cars_model)
 checkConnectionWithDB(model);
 // dropTables(user_model,car_type_model,reservations_model, cars_model);
 generateTables(user_model,car_type_model,reservations_model,cars_model);
-// createCars();
+createCars();
 
 
 // car_type_model.hasMany(model.cars, {foreignKey: 'car_type'});
@@ -294,9 +294,11 @@ router.get('/addCar2', function (req, res, next) {
 //
 //
 // });
-
-function insertIntoReservations(bookInDate, bookOutDate, bookInPlace, bookOutPlace, totalPrice, isApprovedByAdmin){
+//userId,car.id, book_in_date,book_out_date, totalPrice, isApprovedByAdmin, book_in_place, book_out_place
+function insertIntoReservations(userId, carId, bookInDate, bookOutDate, totalPrice, isApprovedByAdmin, bookInPlace, bookOutPlace){
     reservations_model.create({
+        userId: userId,
+        carId: carId,
         bookInDate: bookInDate,
         bookOutDate: bookOutDate,
         bookInPlace: bookInPlace,
@@ -337,25 +339,28 @@ router.post('/reserveResult', function (req,res) {
 
 
     cars_model.findOne({
-        where: {car_name: chosen_car },
-        attributes: ['price_per_day']
-    }).then( item => {
-        if(item == null){
+        where: {
+            car_name: chosen_car,
+            available: 1
+        },
+        attributes: ['id','price_per_day']
+    }).then( car => {
+        if(car == null){
         {
             var msg = "Wybrane auto nie jest dostepne. Prosze wybierz inne.";
             res.render('error', {title: "Reservation Error", msg: msg});
         }
     }
     else {
-        console.log("Chosen car price per day: " + item.price_per_day);
-        var pricePerDay = item.price_per_day;
+        console.log("Chosen car price per day: " + car.price_per_day);
         var totalDaysCarIsRented = new DateDiff(book_out_date_converted_to_js_format, book_in_date_converted_to_js_format).days();
-        var totalPrice = pricePerDay * totalDaysCarIsRented;
-        console.log("Price per day: " + pricePerDay);
+        var totalPrice = car.price_per_day * totalDaysCarIsRented;
+        console.log("Price per day: " + car.price_per_day);
         console.log("Total days car is rented: " + totalDaysCarIsRented);
         console.log("Total price: " + totalPrice);
-
-        insertIntoReservations(book_in_date,book_out_date,book_in_place,book_out_place, totalPrice,isApprovedByAdmin);
+        // @TODO User ID get from session and insert below to var userid
+        var userId = null;
+        insertIntoReservations(userId,car.id, book_in_date,book_out_date, totalPrice, isApprovedByAdmin, book_in_place, book_out_place);
         res.render('reserveResult', {title: "Reservation Details"});
     }})
 

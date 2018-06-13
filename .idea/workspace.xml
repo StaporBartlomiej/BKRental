@@ -4,6 +4,9 @@
     <list default="true" id="891d0b6b-e958-48b4-9a98-01928dcfcd1c" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/confirm.jade" beforeDir="false" afterPath="$PROJECT_DIR$/views/confirm.jade" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/delete.jade" beforeDir="false" afterPath="$PROJECT_DIR$/views/delete.jade" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/edit.jade" beforeDir="false" afterPath="$PROJECT_DIR$/views/edit.jade" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -77,11 +80,47 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="cars.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/models/cars.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="19" column="6" selection-start-line="19" selection-start-column="6" selection-end-line="19" selection-end-column="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-111">
-              <caret line="297" column="33" selection-start-line="297" selection-start-column="33" selection-end-line="297" selection-end-column="33" />
+            <state relative-caret-position="495">
+              <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="error.jade" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/error.jade">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="reserveResult.jade" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/reserveResult.jade">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret selection-end-line="7" selection-end-column="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="reserve.jade" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/reserve.jade">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="346">
+              <caret line="63" column="48" selection-start-line="63" selection-start-column="48" selection-end-line="63" selection-end-column="48" />
             </state>
           </provider>
         </entry>
@@ -157,8 +196,9 @@
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/config/config.json" />
         <option value="$PROJECT_DIR$/models/car_type.js" />
-        <option value="$PROJECT_DIR$/models/cars.js" />
         <option value="$PROJECT_DIR$/models/reservations.js" />
+        <option value="$PROJECT_DIR$/models/cars.js" />
+        <option value="$PROJECT_DIR$/views/error.jade" />
         <option value="$PROJECT_DIR$/routes/index.js" />
       </list>
     </option>
@@ -220,6 +260,11 @@
               <item name="BKRental" type="b2602c69:ProjectViewProjectNode" />
               <item name="BKRental" type="462c0819:PsiDirectoryNode" />
               <item name="routes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BKRental" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BKRental" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -348,7 +393,7 @@
       <workItem from="1527783386182" duration="426000" />
       <workItem from="1527783859207" duration="7413000" />
       <workItem from="1528130337201" duration="4458000" />
-      <workItem from="1528914292582" duration="4389000" />
+      <workItem from="1528914292582" duration="6916000" />
     </task>
     <task id="LOCAL-00001" summary="Got data from database and put it in table">
       <created>1525196314558</created>
@@ -553,11 +598,25 @@
       <option name="project" value="LOCAL" />
       <updated>1528917215914</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="All values except foreign keys are now properly inserted into db">
+      <created>1528920331353</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1528920331353</updated>
+    </task>
+    <task id="LOCAL-00031" summary="If car is not avaialble error is displayed">
+      <created>1528921581690</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1528921581690</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="70396000" />
+    <option name="totallyTimeSpent" value="72923000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-268" y="-1080" width="1920" height="1080" extended-state="0" />
@@ -572,13 +631,13 @@
       <window_info anchor="right" id="Maven Projects" order="4" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.3373102" />
-      <window_info anchor="bottom" id="Version Control" order="12" weight="0.32974428" />
+      <window_info anchor="bottom" id="Version Control" order="12" weight="0.32935324" />
       <window_info id="npm" order="5" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.34925374" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.34925374" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="3" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14217253" />
-      <window_info anchor="right" id="Database" order="5" visible="true" weight="0.19914803" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14217253" />
+      <window_info active="true" anchor="right" id="Database" order="5" visible="true" weight="0.19914803" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="4" />
@@ -632,12 +691,20 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Cars are now being displayed properly in 2nd tab" />
-    <MESSAGE value="Home font mostly done, css left" />
     <MESSAGE value="Added validation, fields are now required" />
     <MESSAGE value="Created new button reserve and moved index content here. there user will provide info needed to make a reservation" />
     <MESSAGE value="Font for reservation done" />
@@ -661,12 +728,11 @@
     <MESSAGE value="tables are now being auto generated if they dont exist fromn code" />
     <MESSAGE value="tables are now dropped at generated new at the start of program" />
     <MESSAGE value="Add findOne which gets desired attribute from db" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add findOne which gets desired attribute from db" />
+    <MESSAGE value="All values except foreign keys are now properly inserted into db" />
+    <MESSAGE value="If car is not avaialble error is displayed" />
+    <option name="LAST_COMMIT_MESSAGE" value="If car is not avaialble error is displayed" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/views/flota.jade">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/admin.jade">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -711,31 +777,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/reserveResult.jade">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="52" selection-start-line="4" selection-start-column="52" selection-end-line="4" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/reserve.jade">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="683">
-          <caret line="63" column="48" selection-start-line="63" selection-start-column="48" selection-end-line="63" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/layout.jade">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/flota.jade">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1185">
-          <caret line="79" column="41" selection-start-line="79" selection-start-column="41" selection-end-line="79" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/error.jade">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/views/editResult2.jade">
@@ -891,13 +933,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/cars.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="9" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="das://0b7fec1e-3290-4f24-ad9d-b4e447c50cea/schema/pai_group_project/table/reservations">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
@@ -912,13 +947,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/index.jade">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="34" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/models/reservations.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -926,10 +954,59 @@
         </state>
       </provider>
     </entry>
+    <entry file="das://0b7fec1e-3290-4f24-ad9d-b4e447c50cea/schema/pai_group_project/table/reservations/index/carid">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/flota.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1185">
+          <caret line="79" column="41" selection-start-line="79" selection-start-column="41" selection-end-line="79" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/index.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="34" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/cars.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="6" selection-start-line="19" selection-start-column="6" selection-end-line="19" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/reserve.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="346">
+          <caret line="63" column="48" selection-start-line="63" selection-start-column="48" selection-end-line="63" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/reserveResult.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="7" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/error.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/routes/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-111">
-          <caret line="297" column="33" selection-start-line="297" selection-start-column="33" selection-end-line="297" selection-end-column="33" />
+        <state relative-caret-position="495">
+          <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
         </state>
       </provider>
     </entry>
