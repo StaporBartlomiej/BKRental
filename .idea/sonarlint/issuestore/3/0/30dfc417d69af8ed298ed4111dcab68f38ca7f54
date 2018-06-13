@@ -1,7 +1,2 @@
 
-djavascript:UnusedVariable":Remove the declaration of the unused 'full_name' variable.(ûœéà8ÛÅÈé²,
-djavascript:UnusedVariable":Remove the declaration of the unused 'full_name' variable.(ûœéà8æÆùò±,
-]javascript:S1854"<Remove this useless assignment to local variable "full_name"(ûœéà8„ÅÅó±,
-]javascript:S1854"<Remove this useless assignment to local variable "full_name"(ûœéà8ÛÅÈé²,
-djavascript:UnusedVariable":Remove the declaration of the unused 'full_name' variable.(ûœéà8„ÅÅó±,
-]javascript:S1854"<Remove this useless assignment to local variable "full_name"(ûœéà8æÆùò±,
+d javascript:DuplicatePropertyName%"1Rename or remove duplicate property name 'error'.(üË½8ªõ˜¼,

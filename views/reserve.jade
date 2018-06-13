@@ -17,8 +17,12 @@ html(lang='en')
                 a(href='/admin') Administration
             li
                 a(href='/reserve') Reserve
+
+        ul
             li
-                a(href='/search') Search
+                a(href='/edit') Edit Reservation
+            li
+                a(href='/cancel') Cancel Reservation
     form(method='POST' action='/reserveResult')
         p Odbiór
         select(name='book_in_place' required)
