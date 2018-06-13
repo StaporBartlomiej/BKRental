@@ -30,6 +30,7 @@ function generateTables(user_model,car_type_model,reservations_model,cars_model)
 checkConnectionWithDB(model);
 // dropTables(user_model,car_type_model,reservations_model, cars_model);
 generateTables(user_model,car_type_model,reservations_model,cars_model);
+// createCars();
 
 
 // car_type_model.hasMany(model.cars, {foreignKey: 'car_type'});
@@ -100,6 +101,42 @@ router.get('/addCar', function (req, res, next) {
     // res.render('index', { title: 'Home' });
 });
 
+function createCars() {
+    model.cars.create({
+        cost_class: 'A+',
+        car_name: 'Mazda 6',
+        price_per_day: 95,
+        air_conditioning: true,
+        number_of_seats: 4,
+        engine_type: 'Benzyna',
+        bluetooth: false,
+        img_link: '/images/mazda_6.png',
+        available: true,
+        transmission: "Manualna"
+    }).then(task => {
+        console.log(task.get({
+        plain: true
+    }))
+})
+
+    model.cars.create({
+        cost_class: 'A+',
+        car_name: 'Kia Pinceto',
+        price_per_day: 95,
+        air_conditioning: true,
+        number_of_seats: 4,
+        engine_type: 'Diesel',
+        bluetooth: false,
+        img_link: '/images/kia_pinceto.png',
+        available: true,
+        transmission: "Automat"
+    }).then(task => {
+        console.log(task.get({
+        plain: true
+    }))
+})
+}
+
 router.get('/addCar2', function (req, res, next) {
 
     model.cars.create({
@@ -110,7 +147,8 @@ router.get('/addCar2', function (req, res, next) {
         number_of_seats: 4,
         engine_type: 'Benzyna',
         bluetooth: false,
-        img_link: '/images/mazda_6.png'
+        img_link: '/images/mazda_6.png',
+        avaiable: true
     }).then(task => {
         console.log(task.get({
         plain: true
@@ -302,6 +340,13 @@ router.post('/reserveResult', function (req,res) {
         where: {car_name: chosen_car },
         attributes: ['price_per_day']
     }).then( item => {
+        if(item == null){
+        {
+            var msg = "Wybrane auto nie jest dostepne. Prosze wybierz inne.";
+            res.render('error', {title: "Reservation Error", msg: msg});
+        }
+    }
+    else {
         console.log("Chosen car price per day: " + item.price_per_day);
         var pricePerDay = item.price_per_day;
         var totalDaysCarIsRented = new DateDiff(book_out_date_converted_to_js_format, book_in_date_converted_to_js_format).days();
@@ -311,7 +356,10 @@ router.post('/reserveResult', function (req,res) {
         console.log("Total price: " + totalPrice);
 
         insertIntoReservations(book_in_date,book_out_date,book_in_place,book_out_place, totalPrice,isApprovedByAdmin);
-    })
+        res.render('reserveResult', {title: "Reservation Details"});
+    }})
+
+
     // console.log("Price: " + price);
 
 
@@ -335,7 +383,7 @@ router.post('/reserveResult', function (req,res) {
     //     })
     // });
 
-    res.render('reserveResult', {title: "Reservation Details"});
+
 
 });
 

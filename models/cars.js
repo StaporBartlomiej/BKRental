@@ -16,7 +16,8 @@ module.exports = (sequelize, DataTypes) => {
       engine_type: DataTypes.STRING,
       transmission: DataTypes.STRING,
       bluetooth: DataTypes.BOOLEAN,
-      img_link: DataTypes.STRING
+      img_link: DataTypes.STRING,
+      available: DataTypes.BOOLEAN
   }, {});
   cars.associate = function(models) {
     // associations can be defined here
