@@ -257,12 +257,14 @@ router.get('/addCar2', function (req, res, next) {
 //
 // });
 
-function insertIntoReservations(bookInDate, bookOutDate, bookInPlace, bookOutPlace){
+function insertIntoReservations(bookInDate, bookOutDate, bookInPlace, bookOutPlace, totalPrice, isApprovedByAdmin){
     reservations_model.create({
         bookInDate: bookInDate,
         bookOutDate: bookOutDate,
         bookInPlace: bookInPlace,
-        bookOutPlace: bookOutPlace
+        bookOutPlace: bookOutPlace,
+        totalPrice: totalPrice,
+        isApprovedByAdmin: isApprovedByAdmin
     }).then(task => {
         console.log((task.get({
         plain: true
@@ -283,7 +285,7 @@ router.post('/reserveResult', function (req,res) {
     var id_card_number = req.body.ID_card_number;
     var price;
 
-    insertIntoReservations(book_in_date,book_out_date,book_in_place,book_out_place);
+
 
     // model.cars.create({car_type: 'Osobowe', cost_class: 'A+', car_name: 'Kia Pinceto', price_per_day: 95, air_conditioning: true, number_of_seats: 4, engine_type: 'Benzyna',bluetooth: false}).then(task => {
     //     console.log(task.get({
@@ -291,20 +293,28 @@ router.post('/reserveResult', function (req,res) {
     //     }))
     // })
 
-
     var book_in_date_converted_to_js_format = new Date(book_in_date);
     var book_out_date_converted_to_js_format = new Date(book_out_date);
-    var car_price_query = "Select price_per_day from cars where car_name='" + chosen_car + "';";
+    var isApprovedByAdmin = false;
+
+
     cars_model.findOne({
         where: {car_name: chosen_car },
         attributes: ['price_per_day']
     }).then( item => {
-        console.log("Chosen car: " + chosen_car);
         console.log("Chosen car price per day: " + item.price_per_day);
-        console.log(item);
-    })
+        var pricePerDay = item.price_per_day;
+        var totalDaysCarIsRented = new DateDiff(book_out_date_converted_to_js_format, book_in_date_converted_to_js_format).days();
+        var totalPrice = pricePerDay * totalDaysCarIsRented;
+        console.log("Price per day: " + pricePerDay);
+        console.log("Total days car is rented: " + totalDaysCarIsRented);
+        console.log("Total price: " + totalPrice);
 
-    var total_days_car_is_rented = new DateDiff(book_out_date_converted_to_js_format, book_in_date_converted_to_js_format);
+        insertIntoReservations(book_in_date,book_out_date,book_in_place,book_out_place, totalPrice,isApprovedByAdmin);
+    })
+    // console.log("Price: " + price);
+
+
 
 
     // db.query(car_price_query,function (error,result) {

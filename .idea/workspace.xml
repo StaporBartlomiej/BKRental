@@ -4,7 +4,6 @@
     <list default="true" id="891d0b6b-e958-48b4-9a98-01928dcfcd1c" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/index.jade" beforeDir="false" afterPath="$PROJECT_DIR$/views/index.jade" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -81,8 +80,17 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="302" column="75" selection-start-line="302" selection-start-column="75" selection-end-line="302" selection-end-column="75" />
+            <state relative-caret-position="-111">
+              <caret line="297" column="33" selection-start-line="297" selection-start-column="33" selection-end-line="297" selection-end-column="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="reservations.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/models/reservations.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="195">
+              <caret line="13" column="24" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -340,7 +348,7 @@
       <workItem from="1527783386182" duration="426000" />
       <workItem from="1527783859207" duration="7413000" />
       <workItem from="1528130337201" duration="4458000" />
-      <workItem from="1528914292582" duration="1504000" />
+      <workItem from="1528914292582" duration="4389000" />
     </task>
     <task id="LOCAL-00001" summary="Got data from database and put it in table">
       <created>1525196314558</created>
@@ -538,11 +546,18 @@
       <option name="project" value="LOCAL" />
       <updated>1528137899368</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Add findOne which gets desired attribute from db">
+      <created>1528917215914</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1528917215914</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="67511000" />
+    <option name="totallyTimeSpent" value="70396000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-268" y="-1080" width="1920" height="1080" extended-state="0" />
@@ -559,10 +574,10 @@
       <window_info anchor="bottom" id="Run" order="2" weight="0.3373102" />
       <window_info anchor="bottom" id="Version Control" order="12" weight="0.32974428" />
       <window_info id="npm" order="5" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.34925374" />
+      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.34925374" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="3" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14217253" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14217253" />
       <window_info anchor="right" id="Database" order="5" visible="true" weight="0.19914803" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -621,7 +636,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed css and menu is now being displayed properly on 2 tabs(without admin tab)" />
     <MESSAGE value="Cars are now being displayed properly in 2nd tab" />
     <MESSAGE value="Home font mostly done, css left" />
     <MESSAGE value="Added validation, fields are now required" />
@@ -646,7 +660,8 @@
     <MESSAGE value="updated readme, created table reservations" />
     <MESSAGE value="tables are now being auto generated if they dont exist fromn code" />
     <MESSAGE value="tables are now dropped at generated new at the start of program" />
-    <option name="LAST_COMMIT_MESSAGE" value="tables are now dropped at generated new at the start of program" />
+    <MESSAGE value="Add findOne which gets desired attribute from db" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add findOne which gets desired attribute from db" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/views/flota.jade">
@@ -812,13 +827,6 @@
     <entry file="file://$PROJECT_DIR$/migrations/20180602164503-create-cars.js" />
     <entry file="file://$PROJECT_DIR$/migrations/20180602164634-create-cars.js" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_2.json" />
-    <entry file="file://$PROJECT_DIR$/views/index.jade">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="34" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/fe3ad2d6-4b8f-428e-bec3-056ca3a786b9/console.sql">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -904,6 +912,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/views/index.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="34" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/models/reservations.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -913,8 +928,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="302" column="75" selection-start-line="302" selection-start-column="75" selection-end-line="302" selection-end-column="75" />
+        <state relative-caret-position="-111">
+          <caret line="297" column="33" selection-start-line="297" selection-start-column="33" selection-end-line="297" selection-end-column="33" />
         </state>
       </provider>
     </entry>
