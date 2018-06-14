@@ -12,17 +12,12 @@ checkConnectionWithDB(model);
 // dropTables(user_model,car_type_model,reservations_model, cars_model);
 generateTables(user_model,car_type_model,reservations_model,cars_model);
 createCars();
+insertIntoUser("Bartek","Stapor",24,"AVH431432","test@gmail.com",123456789);
 
 router.get('/', function(req, res, next) {
 
     res.render('index', { title: 'Home' });
 });
-
-router.get('/addCar', function (req, res, next) {
-
-
-})
-
 
 
 function createCars() {
@@ -45,7 +40,7 @@ function createCars() {
 
     model.cars.create({
         cost_class: 'A+',
-        car_name: 'Kia Pinceto',
+        car_name: 'Kia Picanto',
         price_per_day: 95,
         air_conditioning: true,
         number_of_seats: 4,
@@ -71,7 +66,7 @@ router.get('/flota', function (req, res) {
 });
 
 
-function insertIntoReservations(userId, carId, bookInDate, bookOutDate, totalPrice, isApprovedByAdmin, bookInPlace, bookOutPlace){
+function insertIntoReservations(userId, carId, bookInDate, bookOutDate, totalPrice, isApprovedByAdmin, bookInPlace, bookOutPlace) {
     reservations_model.create({
         userId: userId,
         carId: carId,
@@ -85,8 +80,23 @@ function insertIntoReservations(userId, carId, bookInDate, bookOutDate, totalPri
         console.log((task.get({
         plain: true
     })))
-    });
+});
 }
+
+function insertIntoUser(firstName, lastName, age, idCardNumber, email, phone){
+    user_model.create({
+        firstName: firstName,
+        lastName: lastName,
+        age: age,
+        idCardNumber: idCardNumber,
+        email: email,
+        phone: phone
+    }).then(task => {
+        console.log((task.get({
+        plain: true
+    })))
+});
+};
 
 router.post('/reserveResult', function (req,res) {
     var book_in_place = req.body.book_in_place;
@@ -119,15 +129,62 @@ router.post('/reserveResult', function (req,res) {
         console.log("Total days car is rented: " + totalDaysCarIsRented);
         console.log("Total price: " + totalPrice);
         // @TODO User ID get from session and insert below to var userid
-        var userId = null;
+        var userId = 1;
         insertIntoReservations(userId,car.id, book_in_date,book_out_date, totalPrice, isApprovedByAdmin, book_in_place, book_out_place);
-        model.sequelize.query("UPDATE cars SET available = " + car.id);
+        var query = "UPDATE cars SET available = 0 WHERE id = ";
+        model.sequelize.query(query + car.id);
         res.render('reserveResult', {title: "Reservation Details"});
     }})
 
 });
 
 router.get('/reserve', function (req,res) {
+
+    res.render('reserve', {title: "Reserve" });  //test: req.body.book_out_place
+
+});
+
+router.get('/displayMyReservations', function (req, res) {
+
+    // @TODO get user Id from session so it will display only reservations that belongs to him
+    var userId = 1;
+    reservations_model.findAll({
+        where: {
+            userId: userId
+        }
+    }).then(reservation => {
+        if(reservation == null){
+            var msg = "Użytkownik nie ma żadnych rezerwacji.";
+            res.render('error', {title: "Error", msg: msg});
+    }
+    else{
+            console.log("Reservations: " + reservation);
+            res.render('displayMyReservations', {title: "My Reservations", reservation: reservation});
+    }
+    });
+
+
+    // res.render('cancelReservation',{title: "Cancel Reservation", id: id})
+});
+
+router.get('/cancelReservationResult', function (req,res) {
+
+    var reservationIdToCancel = 1;
+
+    reservations_model.findAll({
+       where: {
+           id: reservationIdToCancel
+       }
+    }).then(reservation => {
+        if(reservation == null){
+            var msg = "Chosen reservation does not exist! Please choose other one.";
+            res.render('error', {title: "Error", msg: msg});
+    }
+    else {
+            var query = "DELETE FROM reservations WHERE id = ";
+        model.sequelize.query(query + reservationIdToCancel)
+    }
+    });
 
     res.render('reserve', {title: "Reserve" });  //test: req.body.book_out_place
 

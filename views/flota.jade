@@ -25,18 +25,18 @@ html(lang='en')
         h1 Flota
         img(src='public/images/kia_pinceto.png')
         div
-            each city in cars
-                p #{city.car_name}
-                img(src=city.img_link, alt=city.car_name)
-                p #{city.img_link}
-                p Typ: #{city.car_type}
-                p Klasa cenowa: #{city.cost_class}
-                p Cena za dzień: #{city.price_per_day}
-                p Klimatyzacja: #{city.air_conditioning}
-                p Ilość siedzień: #{city.number_of_seats}
-                p Silnik: #{city.engine_type}
-                p Skrzynia biegów:#{city.transmission}
-                p Bluetooth: #{city.bluetooth}
+            each item in cars
+                p #{item.car_name}
+                img(src=item.img_link, alt=item.car_name)
+                p #{item.img_link}
+                p Typ: #{item.car_type}
+                p Klasa cenowa: #{item.cost_class}
+                p Cena za dzień: #{item.price_per_day}
+                p Klimatyzacja: #{item.air_conditioning}
+                p Ilość siedzień: #{item.number_of_seats}
+                p Silnik: #{item.engine_type}
+                p Skrzynia biegów:#{item.transmission}
+                p Bluetooth: #{item.bluetooth}
 
 
 

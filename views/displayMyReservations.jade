@@ -23,17 +23,13 @@ html(lang='en')
 
         ul
             li
-                a(href='/confirm') Confirm
+                a(href='/edit') Edit Reservation
             li
-                a(href='/edit') Edit
-            li
-                a(href='/delete') Delete
-            li
-                a(href='/display_reservations') Display All Reservations
+                a(href='/displayMyReservations') Display My Reservation
 
 
         div
-            table#customers
+            table#reservations
                 thead
                     tr
                         th Imie
@@ -48,7 +44,13 @@ html(lang='en')
                         th Miejsce odbioru
                         th Miejsce zwrotu
                 tbody
-                    each city in data
+                    each item in reservation
                         tr
-                            each row in city
-                                td #{row}
+                            td #{item.id}
+                            td #{item.userId}
+                            td #{item.bookInDate}
+                            td #{item.bookOutDate}
+                            td #{item.totalPrice}
+                            td #{item.isApprovedByAdmin}
+                            td #{item.bookInPlace}
+                            td #{item.bookOutPlace}

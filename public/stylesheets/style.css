@@ -52,23 +52,23 @@ h1 {
 p {
     color: white;
 }
-#customers {
+#reservations {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 100%;
 }
 
-#customers td, #customers th {
+#reservations td, #reservations th {
     border: 1px solid #ddd;
     padding: 8px;
 }
 
-#customers tr{
+#reservations tr{
     background-color: #f2f2f2;}
 
-#customers tr:hover {background-color: #4CAF50;}
+#reservations tr:hover {background-color: #4CAF50;}
 
-#customers th {
+#reservations th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
