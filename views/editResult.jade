@@ -29,9 +29,6 @@ html(lang='en')
     P Numer Dowodu Osobistego
 
     form(method='POST' action='/editResult2')
-        select(name='id_card_number_edit_result2_view')
-            option(value="#{select_customer_to_edit}") #{select_customer_to_edit}
-                //
         p Odbiór
         select(name='book_in_place' required)
             option(value='Bialystok') Białystok
@@ -45,8 +42,6 @@ html(lang='en')
             option(value='Warszawa') Warszawa
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         input(type="date" name="book_in_date" required)
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        input(type="time" name="book_in_time" required)
         p Zwrot
         select(name='book_out_place' required)
             option(value='Bialystok') Białystok
@@ -60,8 +55,6 @@ html(lang='en')
             option(value='Warszawa') Warszawa
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         input(type="date" name="book_out_date" required)
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        input(type="time" name="book_out_time" required)
         br
         br
         p Wybrane auto

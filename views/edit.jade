@@ -6,7 +6,7 @@ html(lang='en')
 
         title Home
     body
-        uul
+        ul
             li
                 a(href='/home') Home
 
@@ -28,10 +28,9 @@ html(lang='en')
                 a(href='/cancelReservation') Cancel Reservation
 
         form(method='POST' action='/editResult')
-            select(name="select_customer_to_edit")
-                each item in data
-                    each row in car
-                        option(value=row) #{row}
+            select(name="reservation_id")
+                each item in reservation
+                    option(value=item.id) #{item.id}
                 br
                 br
                 input(type="submit" )

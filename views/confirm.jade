@@ -35,7 +35,7 @@ html(lang='en')
         form(method='POST' action='/confirmResult')
             select(name="select_customer_to_approve")
                 each item in data
-                    each row in car
+                    each row in reservation
                         option(value=row) #{row}
                 br
                 br

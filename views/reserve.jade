@@ -40,8 +40,6 @@ html(lang='en')
             option(value='Warszawa') Warszawa
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         input(type="date" name="book_in_date" required)
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        input(type="time" name="book_in_time" required)
         p Zwrot
         select(name='book_out_place' required)
             option(value='Bialystok') Białystok
@@ -55,20 +53,8 @@ html(lang='en')
             option(value='Warszawa') Warszawa
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         input(type="date" name="book_out_date" required)
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        input(type="time" name="book_out_time" required)
         br
         br
-        p Imię:
-        input(type=text name="consumer_name" required)
-        p Nazwisko
-        input(type=text name="consumer_surname" required)
-        p Numer dowodu osobistego
-        input(type=text name="ID_card_number" required)
-        p E-mail
-        input(type=email name="consumer_email" required)
-        p Telefon Kontaktowy
-        input(type=number name="consumer_phone" required)
         p Wybrane auto
         select(name="chosen_car")
             option(value="Fiat 500") Fiat 500
