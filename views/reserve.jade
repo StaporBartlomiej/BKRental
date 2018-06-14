@@ -8,7 +8,7 @@ html(lang='en')
     body
         ul
             li
-                a(href='/') Home
+                a(href='/home') Home
 
             li
                 a(href='/flota') Flota
@@ -18,11 +18,14 @@ html(lang='en')
             li
                 a(href='/reserve') Reserve
 
+
         ul
             li
                 a(href='/edit') Edit Reservation
             li
-                a(href='/displayMyReservations') Display my reservations
+                a(href='/displayMyReservations') Display My Reservation
+            li
+                a(href='/cancelReservation') Cancel Reservation
     form(method='POST' action='/reserveResult')
         p Odbiór
         select(name='book_in_place' required)

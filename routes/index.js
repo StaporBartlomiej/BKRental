@@ -138,6 +138,8 @@ router.post('/reserveResult', function (req,res) {
 
 });
 
+
+
 router.get('/reserve', function (req,res) {
 
     res.render('reserve', {title: "Reserve" });  //test: req.body.book_out_place
@@ -167,28 +169,54 @@ router.get('/displayMyReservations', function (req, res) {
     // res.render('cancelReservation',{title: "Cancel Reservation", id: id})
 });
 
-router.get('/cancelReservationResult', function (req,res) {
+router.get('/cancelReservation', function (req,res) {
 
-    var reservationIdToCancel = 1;
-
+    console.log("start");
+    // @TODO get user Id from session so it will display only reservations that belongs to him
+    var userId = 1;
     reservations_model.findAll({
-       where: {
-           id: reservationIdToCancel
-       }
+        where: {
+            userId: userId
+        }
+    }).then(reservation => {
+        console.log("in findall before if");
+        if(reservation == null){
+            console.log("in if");
+        var msg = "Użytkownik nie ma żadnych rezerwacji.";
+        res.render('error', {title: "Error", msg: msg});
+    }
+    else{
+            console.log("in else");
+        console.log("Reservations: " + reservation);
+        res.render('cancelReservation', {title: "Cancel Reservation", reservation: reservation});
+    }
+});
+});
+
+
+router.post('/cancelReservationResult',function (req, res) {
+    var chosen_reservation = req.body.chosen_reservation;
+    reservations_model.findAll({
+        where: {
+            id: chosen_reservation
+        }
     }).then(reservation => {
         if(reservation == null){
-            var msg = "Chosen reservation does not exist! Please choose other one.";
-            res.render('error', {title: "Error", msg: msg});
+        var msg = "Chosen reservation does not exist! Please choose other one.";
+        res.render('error', {title: "Error", msg: msg});
     }
     else {
-            var query = "DELETE FROM reservations WHERE id = ";
-        model.sequelize.query(query + reservationIdToCancel)
+        var query = "DELETE FROM reservations WHERE id = ";
+        model.sequelize.query(query + chosen_reservation);
+        res.render('cancelReservationResult', {title: "Cancel Reservation Info"});
     }
+});
+
+    // res.render('reserve', {title: "Reserve" });  //test: req.body.book_out_place
+
     });
 
-    res.render('reserve', {title: "Reserve" });  //test: req.body.book_out_place
 
-});
 
 function checkConnectionWithDB(model){
     model.sequelize.authenticate()

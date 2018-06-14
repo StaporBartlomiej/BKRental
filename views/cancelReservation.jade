@@ -1,0 +1,64 @@
+doctype html
+html(lang='en')
+    head
+        meta(charset='UTF-8')
+        link(rel='stylesheet', type='text/css', href='/stylesheets/style.css')
+
+        title #{title}
+    body
+        ul
+            li
+                a(href='/home') Home
+
+            li
+                a(href='/flota') Flota
+
+            li
+                a(href='/admin') Administration
+            li
+                a(href='/reserve') Reserve
+
+
+        ul
+            li
+                a(href='/edit') Edit Reservation
+            li
+                a(href='/displayMyReservations') Display My Reservation
+            li
+                a(href='/cancelReservation') Cancel Reservation
+
+
+        form(method='POST' action='/cancelReservationResult')
+            p Wybierz ID rezerwacji
+            select(name='chosen_reservation' required)
+                each item in reservation
+                    option(value=item.id) #{item.id}
+            br
+            br
+            input(type="submit")
+        //div
+        //    table#reservations
+        //        thead
+        //            tr
+        //                th Imie
+        //                th Nazwisko
+        //                th Nr Dowodu Osobistego
+        //                th E-mail
+        //                th Telefon
+        //                th Data zarezerwowania auta
+        //                th Data oddania auta
+        //                th Całkowity koszt
+        //                th Zatwierdzony przed administratora
+        //                th Miejsce odbioru
+        //                th Miejsce zwrotu
+        //        tbody
+        //            each item in reservation
+        //                tr
+        //                    td #{item.id}
+        //                    td #{item.userId}
+        //                    td #{item.bookInDate}
+        //                    td #{item.bookOutDate}
+        //                    td #{item.totalPrice}
+        //                    td #{item.isApprovedByAdmin}
+        //                    td #{item.bookInPlace}
+        //                    td #{item.bookOutPlace}

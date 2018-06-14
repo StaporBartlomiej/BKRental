@@ -17,8 +17,6 @@ html(lang='en')
                 a(href='/admin') Administration
             li
                 a(href='/reserve') Reserve
-            li
-                a(href='/search') Search
 
 
         ul
@@ -26,21 +24,21 @@ html(lang='en')
                 a(href='/edit') Edit Reservation
             li
                 a(href='/displayMyReservations') Display My Reservation
+            li
+                a(href='/cancelReservation') Cancel Reservation
 
 
         div
             table#reservations
                 thead
                     tr
-                        th Imie
-                        th Nazwisko
-                        th Nr Dowodu Osobistego
-                        th E-mail
-                        th Telefon
+                        th ID Rezerwacji
+                        th ID użytkownika
+                        th ID Samochodu
                         th Data zarezerwowania auta
                         th Data oddania auta
                         th Całkowity koszt
-                        th Zatwierdzony przed administratora
+                        th Zatwierdzona
                         th Miejsce odbioru
                         th Miejsce zwrotu
                 tbody
@@ -48,6 +46,7 @@ html(lang='en')
                         tr
                             td #{item.id}
                             td #{item.userId}
+                            td #{item.carId}
                             td #{item.bookInDate}
                             td #{item.bookOutDate}
                             td #{item.totalPrice}
