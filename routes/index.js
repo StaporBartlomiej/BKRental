@@ -72,7 +72,7 @@ function insertIntoReservations(userId, carId, bookInDate, bookOutDate, totalPri
         carId: carId,
         bookInDate: bookInDate,
         bookOutDate: bookOutDate,
-        bookInDate: bookInPlace,
+        bookInPlace: bookInPlace,
         bookOutPlace: bookOutPlace,
         totalPrice: totalPrice,
         isApprovedByAdmin: isApprovedByAdmin
@@ -83,13 +83,14 @@ function insertIntoReservations(userId, carId, bookInDate, bookOutDate, totalPri
 });
 }
 
-function updateResservation(bookInDate,bookInPlace,bookOutDate, bookOutPlace, carId, reservationId) {
+function updateResservation(bookInDate,bookInPlace,bookOutDate, bookOutPlace, carId, reservationId, totalprice) {
     reservations_model.update({
         bookInDate: bookInDate,
         bookInPlace: bookInPlace,
         bookOutDate: bookOutDate,
         bookOutPlace: bookOutPlace,
         carId: carId,
+        totalPrice: totalprice
     }, {
         where: {
             id: reservationId
@@ -130,7 +131,7 @@ router.post('/reserveResult', function (req,res) {
         },
         attributes: ['id','price_per_day']
     }).then( reservation => {
-        if(car == null){
+        if(reservation == null){
         {
             var msg = "Wybrane auto nie jest dostepne. Prosze wybierz inne.";
             res.render('error', {title: "Reservation Error", msg: msg});
@@ -262,16 +263,20 @@ router.post('/editResult', function (req, res) {
 
 });
 
-router.get('editResult2', function (req, res) {
+router.post('/editResult2', function (req, res) {
 
     var book_in_place = req.body.book_in_place;
     var book_in_date = req.body.book_in_date;
     var book_out_place = req.body.book_out_place;
     var book_out_date = req.body.book_out_date;
-    var chosen_car = req.body.chosen_car;
     var book_in_date_converted_to_js_format = new Date(book_in_date);
     var book_out_date_converted_to_js_format = new Date(book_out_date);
 
+    console.log("ResevationID: " + req.body.reservation_id);
+    console.log("ResevationID: " + book_in_date);
+    console.log("ResevationID: " + book_out_date);
+    console.log("ResevationID: " + book_out_place);
+    console.log("ResevationID: " + book_in_place);
     reservations_model.findOne({
         where: {
             id: req.body.reservation_id,
@@ -279,6 +284,7 @@ router.get('editResult2', function (req, res) {
     }).then( reservation => {
         if(reservation == null){
         {
+            console.log("Res content: " + reservation);
             var msg = "Wybrane rezerwacja nie istnieje";
             res.render('error', {title: "Reservation Error", msg: msg});
         }
@@ -286,6 +292,7 @@ router.get('editResult2', function (req, res) {
 else {
             var query = "UPDATE cars SET available = 1 WHERE id = ";
             model.sequelize.query(query + reservation.carId);
+            console.log(query);
 
         cars_model.findOne({
             where: {
@@ -302,17 +309,14 @@ else {
     else {
             console.log("Chosen reservation price per day: " + car.price_per_day);
             var totalDaysCarIsRented = new DateDiff(book_out_date_converted_to_js_format, book_in_date_converted_to_js_format).days();
-            var totalPrice = reservation.price_per_day * totalDaysCarIsRented;
+            var totalPrice = car.price_per_day * totalDaysCarIsRented;
             console.log("Price per day: " + car.price_per_day);
             console.log("Total days reservation is rented: " + totalDaysCarIsRented);
             console.log("Total price: " + totalPrice);
             // @TODO User ID get from session and insert below to var userid
             var userId = 1;
-            updateResservation(book_in_date_converted_to_js_format,book_in_place, book_out_date_converted_to_js_format,book_out_place,car.id,req.body.reservation_id);
-            // insertIntoReservations(userId,reservation.id, book_in_date,book_out_date, totalPrice, isApprovedByAdmin, book_in_place, book_out_place);
-            // var query = "UPDATE cars SET available = 0 WHERE id = ";
-            // model.sequelize.query(query + reservation.id);
-            res.render('reserveResult', {title: "Reservation Details"});
+            updateResservation(book_in_date,book_in_place, book_out_date,book_out_place,car.id,req.body.reservation_id,totalPrice);
+            res.render('editResult2', {title: "Edit Result"});
         }})
 
 

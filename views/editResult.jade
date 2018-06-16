@@ -29,6 +29,9 @@ html(lang='en')
     P Numer Dowodu Osobistego
 
     form(method='POST' action='/editResult2')
+        p ID Rezerwacji
+        select(name='reservation_id')
+            option(value="#{reservation_id}") #{reservation_id}
         p Odbiór
         select(name='book_in_place' required)
             option(value='Bialystok') Białystok
