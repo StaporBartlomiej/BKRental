@@ -11,7 +11,7 @@ html(lang='en')
                 a(href='/home') Home
 
             li
-                a(href='/flota') Flota
+                a(href='/') Fleet
 
             li
                 a(href='/admin') Administration
@@ -29,10 +29,10 @@ html(lang='en')
     P Numer Dowodu Osobistego
 
     form(method='POST' action='/editResult2')
-        p ID Rezerwacji
+        p Reservation ID
         select(name='reservation_id')
             option(value="#{reservation_id}") #{reservation_id}
-        p Odbiór
+        p Pick up place
         select(name='book_in_place' required)
             option(value='Bialystok') Białystok
             option(value='Bielsko_Biala') Bielsko Biała
@@ -45,7 +45,7 @@ html(lang='en')
             option(value='Warszawa') Warszawa
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         input(type="date" name="book_in_date" required)
-        p Zwrot
+        p Return place
         select(name='book_out_place' required)
             option(value='Bialystok') Białystok
             option(value='Bielsko_Biala') Bielsko Biała
@@ -60,7 +60,7 @@ html(lang='en')
         input(type="date" name="book_out_date" required)
         br
         br
-        p Wybrane auto
+        p Chosen car
         select(name="edit_chosen_car")
             option(value="Fiat 500") Fiat 500
             option(value="Kia Picanto") Kia Picanto
@@ -75,5 +75,5 @@ html(lang='en')
             option(value="BMW X4") BMW X4
         br
         br
-        input(type="submit")
+        input(type="submit" value="Proceed")
 

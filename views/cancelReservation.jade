@@ -8,17 +8,15 @@ html(lang='en')
     body
         ul
             li
-                a(href='/home') Home
-
-            li
-                a(href='/flota') Flota
-
-            li
-                a(href='/admin') Administration
+                a(href='/') Fleet
+            if logged == 1
+                li
+                    a(href='/admin') Administration
             li
                 a(href='/reserve') Reserve
-
-
+            if logged
+                li
+                    a(href='logout') Logout
         ul
             li
                 a(href='/edit') Edit Reservation
@@ -29,36 +27,10 @@ html(lang='en')
 
 
         form(method='POST' action='/cancelReservationResult')
-            p Wybierz ID rezerwacji
+            p Pick reservation ID
             select(name='chosen_reservation' required)
                 each item in reservation
                     option(value=item.id) #{item.id}
             br
             br
-            input(type="submit")
-        //div
-        //    table#reservations
-        //        thead
-        //            tr
-        //                th Imie
-        //                th Nazwisko
-        //                th Nr Dowodu Osobistego
-        //                th E-mail
-        //                th Telefon
-        //                th Data zarezerwowania auta
-        //                th Data oddania auta
-        //                th Całkowity koszt
-        //                th Zatwierdzony przed administratora
-        //                th Miejsce odbioru
-        //                th Miejsce zwrotu
-        //        tbody
-        //            each item in reservation
-        //                tr
-        //                    td #{item.id}
-        //                    td #{item.userId}
-        //                    td #{item.bookInDate}
-        //                    td #{item.bookOutDate}
-        //                    td #{item.totalPrice}
-        //                    td #{item.isApprovedByAdmin}
-        //                    td #{item.bookInPlace}
-        //                    td #{item.bookOutPlace}
+            input(type="submit" value="Proceed")

@@ -8,26 +8,18 @@ html(lang='en')
     body
         ul
             li
-                a(href='/home') Home
-
-            li
-                a(href='/flota') Flota
-
-            li
-                a(href='/admin') Administration
-            li
-                a(href='/reserve') Reserve
-
-
-        ul
-            li
-                a(href='/edit') Edit Reservation
-            li
-                a(href='/displayMyReservations') Display My Reservation
-            li
-                a(href='/cancelReservation') Cancel Reservation
+                a(href='/') Fleet
+            if logged === 1
+                li
+                    a(href='/admin') Administration
+            else
+                li
+                    a(href='/user') My account
+            if logged
+                li
+                    a(href='/logout') Logout
     form(method='POST' action='/reserveResult')
-        p Odbiór
+        p Pick up
         select(name='book_in_place' required)
             option(value='Bialystok') Białystok
             option(value='Bielsko_Biala') Bielsko Biała
@@ -40,7 +32,7 @@ html(lang='en')
             option(value='Warszawa') Warszawa
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         input(type="date" name="book_in_date" required)
-        p Zwrot
+        p Return
         select(name='book_out_place' required)
             option(value='Bialystok') Białystok
             option(value='Bielsko_Biala') Bielsko Biała
@@ -55,7 +47,7 @@ html(lang='en')
         input(type="date" name="book_out_date" required)
         br
         br
-        p Wybrane auto
+        p Chosen car
         select(name="chosen_car")
             option(value="Fiat 500") Fiat 500
             option(value="Kia Picanto") Kia Picanto
@@ -70,5 +62,5 @@ html(lang='en')
             option(value="BMW X4") BMW X4
         br
         br
-        input(type="submit")
+        input(type="submit" value="Reserve")
 

@@ -4,31 +4,70 @@ html(lang='en')
     meta(charset='UTF-8')
     link(rel='stylesheet', type='text/css', href='/stylesheets/style.css')
 
-    title Home
+    title Admin
   body
     ul
-      li
-        a(href='/home') Home
-
-      li
-        a(href='/flota') Flota
-
-      li
-        a(href='/admin') Administration
-      li
-        a(href='/reserve') Reserve
-      li
-        a(href='/search') Search
-
-
-    ul
         li
-            a(href='/confirm') Confirm
+            a(href='/') Fleet
+
         li
-            a(href='/edit') Edit
+            a(href='/admin') Administration
         li
-            a(href='/delete') Delete
-        li
-            a(href='/display_reservations') Display All Reservations
-  p Welcome to #{title}
+            a(href='/logout') Logout
+    h2 Pending reservations:
+    center
+        table(style="border-collapse: collapse; width: 80%")
+            tr
+                th(class="admin-list") Reservation ID
+                th(class="admin-list") User ID
+                th(class="admin-list") Car ID
+                th(class="admin-list") Book in date
+                th(class="admin-list") Book out date
+                th(class="admin-list") Book in place
+                th(class="admin-list") Book out place
+                th(class="admin-list") Total price
+            each item in reservation
+                if item.isApprovedByAdmin == 0
+                    tr
+                        td(class="admin-list")= item.id
+                        td(class="admin-list")= item.userId
+                        td(class="admin-list")= item.carId
+                        td(class="admin-list")= item.bookInDate
+                        td(class="admin-list")= item.bookOutDate
+                        td(class="admin-list")= item.bookInPlace
+                        td(class="admin-list")= item.bookOutPlace
+                        td(class="admin-list")= item.totalPrice + " PLN"
+                        form(method="POST" action="/admin/update/id=" + item.id)
+                            td(class="admin-list")
+                                input(type="submit" value="Approve")
+                        form(method="POST" action="/admin/cancel/id=" + item.id)
+                            td(class="admin-list")
+                                input(type="submit" value="Cancel")
+
+    br
+    br
+    h2 Approved reservations:
+    center
+        table(style="border-collapse: collapse; width: 80%")
+            tr
+                th(class="admin-list") Reservation ID
+                th(class="admin-list") User ID
+                th(class="admin-list") Car ID
+                th(class="admin-list") Book in date
+                th(class="admin-list") Book out date
+                th(class="admin-list") Book in place
+                th(class="admin-list") Book out place
+                th(class="admin-list") Total price
+            each item in reservation
+                if item.isApprovedByAdmin == 1
+                    tr
+                        td(class="admin-list")= item.id
+                        td(class="admin-list")= item.userId
+                        td(class="admin-list")= item.carId
+                        td(class="admin-list")= item.bookInDate
+                        td(class="admin-list")= item.bookOutDate
+                        td(class="admin-list")= item.bookInPlace
+                        td(class="admin-list")= item.bookOutPlace
+                        td(class="admin-list")= item.totalPrice + " PLN"
+
 

@@ -75,3 +75,27 @@ p {
     background-color: green;
     color: white;
 }
+
+#msgDiv {
+    display: none;
+}
+
+.top-buffer {
+    margin-top:45px;
+}
+
+label {
+    color: white;
+    font-size: 16px;
+}
+
+.admin-list {
+    color: white;
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+h2 {
+    color: white;
+}

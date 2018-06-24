@@ -8,57 +8,35 @@ html(lang='en')
     body
         ul
             li
-                a(href='/home') Home
-
-            li
-                a(href='/flota') Flota
-
-            li
-                a(href='/admin') Administration
+                a(href='/') Fleet
+            if logged === 1
+                li
+                    a(href='/admin') Administration
+            else
+                li
+                    a(href='/user') My account
             li
                 a(href='/reserve') Reserve
-
-
-        ul
-            li
-                a(href='/edit') Edit Reservation
-            li
-                a(href='/displayMyReservations') Display My Reservation
-            li
-                a(href='/cancelReservation') Cancel Reservation
-
+            if logged
+                li
+                    a(href='/logout') Logout
+            else
+                li
+                    a(href='/login') Login
+                li
+                    a(href='register') Register
 
     tbody
-        h1 Flota
-        img(src='public/images/kia_pinceto.png')
+        h1 Fleet
         div
             each item in cars
                 p #{item.car_name}
                 img(src=item.img_link, alt=item.car_name)
-                p #{item.img_link}
-                p Typ: #{item.car_type}
-                p Klasa cenowa: #{item.cost_class}
-                p Cena za dzień: #{item.price_per_day}
-                p Klimatyzacja: #{item.air_conditioning}
-                p Ilość siedzień: #{item.number_of_seats}
-                p Silnik: #{item.engine_type}
-                p Skrzynia biegów:#{item.transmission}
+                p Type: #{item.car_type}
+                p Price class: #{item.cost_class}
+                p Price per day: #{item.price_per_day}
+                p Air conditioning: #{item.air_conditioning}
+                p Seats: #{item.number_of_seats}
+                p Engine: #{item.engine_type}
+                p Transmission:#{item.transmission}
                 p Bluetooth: #{item.bluetooth}
-
-
-
-
-    //
-    //
-    //h1 Flota
-    //    div
-    //        h1 #{dane[0].car_name}
-    //        img(src=dane[0].image_link, alt=dane[0].car_name)
-    //        p Typ: #{dane[0].car_type}
-    //        p Klasa cenowa: #{dane[0].cost_class}
-    //        p Cena za dzień: #{dane[0].price_per_day}
-    //        p Klimatyzacja: #{dane[0].air_conditioning}
-    //        p Ilość Siedzień: #{dane[0].number_of_seats}
-    //        p Silnik: #{dane[0].engine_type}
-    //        p Skrzynia biegów: #{dane[0].transmission}
-    //        p Bluetooth: #{dane[0].bluetooth}

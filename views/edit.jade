@@ -8,16 +8,15 @@ html(lang='en')
     body
         ul
             li
-                a(href='/home') Home
-
-            li
-                a(href='/flota') Flota
-
-            li
-                a(href='/admin') Administration
+                a(href='/') Fleet
+            if logged == 1
+                li
+                    a(href='/admin') Administration
             li
                 a(href='/reserve') Reserve
-
+            if logged
+                li
+                    a(href='/logout') Logout
 
         ul
             li
@@ -33,4 +32,4 @@ html(lang='en')
                     option(value=item.id) #{item.id}
                 br
                 br
-                input(type="submit" )
+                input(type="submit" value="Proceed" )

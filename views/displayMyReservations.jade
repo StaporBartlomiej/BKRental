@@ -8,17 +8,15 @@ html(lang='en')
     body
         ul
             li
-                a(href='/home') Home
-
-            li
-                a(href='/flota') Flota
-
-            li
-                a(href='/admin') Administration
+                a(href='/') Fleet
+            if logged == 1
+                li
+                    a(href='/admin') Administration
             li
                 a(href='/reserve') Reserve
-
-
+            if logged
+                li
+                    a(href='logout') Logout
         ul
             li
                 a(href='/edit') Edit Reservation
@@ -32,15 +30,15 @@ html(lang='en')
             table#reservations
                 thead
                     tr
-                        th ID Rezerwacji
-                        th ID użytkownika
-                        th ID Samochodu
-                        th Data zarezerwowania auta
-                        th Data oddania auta
-                        th Całkowity koszt
-                        th Zatwierdzona
-                        th Miejsce odbioru
-                        th Miejsce zwrotu
+                        th Reservatiom ID
+                        th User ID
+                        th Car ID
+                        th Reservation date
+                        th Return date
+                        th Total costs
+                        th Confirmed
+                        th Pick up place
+                        th Return place
                 tbody
                     each item in reservation
                         tr
