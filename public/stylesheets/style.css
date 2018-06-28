@@ -76,6 +76,31 @@ p {
     color: white;
 }
 
+#reservationsPending {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#reservationsPending td, #reservationsPending th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#reservationsPending tr{
+    background-color: #f2f2f2;}
+
+#reservationsPending tr:hover {background-color: #af854c;}
+
+#reservationsPending th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: orange;
+    color: white;
+}
+
+
 #msgDiv {
     display: none;
 }
@@ -90,10 +115,14 @@ label {
 }
 
 .admin-list {
-    color: white;
+    color: black;
     padding: 12px;
     text-align: left;
     border-bottom: 1px solid #ddd;
+}
+
+.admin-list th {
+    background-color: orange;
 }
 
 h2 {

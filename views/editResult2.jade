@@ -8,17 +8,16 @@ html(lang='en')
     body
         ul
             li
-                a(href='/home') Home
-
-            li
-                a(href='/) Fleet
-
-            li
-                a(href='/admin') Administration
-            li
-                a(href='/reserve') Reserve
-
-
+                a(href='/') Fleet
+            if logged === 1
+                li
+                    a(href='/admin') Administration
+            else
+                li
+                    a(href='/reserve') Reserve
+            if logged
+                li
+                    a(href='/logout') Logout
         ul
             li
                 a(href='/edit') Edit Reservation
@@ -26,5 +25,7 @@ html(lang='en')
                 a(href='/displayMyReservations') Display My Reservation
             li
                 a(href='/cancelReservation') Cancel Reservation
+            li
+                a(href='/userRent') Rent your car
     h1 Successfully edited!
 

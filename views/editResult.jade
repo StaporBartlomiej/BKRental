@@ -8,17 +8,12 @@ html(lang='en')
     body
         ul
             li
-                a(href='/home') Home
-
-            li
                 a(href='/') Fleet
-
-            li
-                a(href='/admin') Administration
             li
                 a(href='/reserve') Reserve
-
-
+            if logged
+                li
+                    a(href='/logout') Logout
         ul
             li
                 a(href='/edit') Edit Reservation
@@ -26,7 +21,8 @@ html(lang='en')
                 a(href='/displayMyReservations') Display My Reservation
             li
                 a(href='/cancelReservation') Cancel Reservation
-    P Numer Dowodu Osobistego
+            li
+                a(href='/userRent') Rent your car
 
     form(method='POST' action='/editResult2')
         p Reservation ID

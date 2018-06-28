@@ -24,15 +24,13 @@ html(lang='en')
                 a(href='/displayMyReservations') Display My Reservation
             li
                 a(href='/cancelReservation') Cancel Reservation
-
-
+            li
+                a(href='/userRent') Rent your car
         div
             table#reservations
                 thead
                     tr
                         th Reservatiom ID
-                        th User ID
-                        th Car ID
                         th Reservation date
                         th Return date
                         th Total costs
@@ -43,8 +41,6 @@ html(lang='en')
                     each item in reservation
                         tr
                             td #{item.id}
-                            td #{item.userId}
-                            td #{item.carId}
                             td #{item.bookInDate}
                             td #{item.bookOutDate}
                             td #{item.totalPrice}

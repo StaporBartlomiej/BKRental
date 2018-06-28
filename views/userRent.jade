@@ -4,7 +4,7 @@ html(lang='en')
         meta(charset='UTF-8')
         link(rel='stylesheet', type='text/css', href='/stylesheets/style.css')
 
-        title Home
+        title #{title}
     body
         ul
             li
@@ -16,8 +16,7 @@ html(lang='en')
                 a(href='/reserve') Reserve
             if logged
                 li
-                    a(href='/logout') Logout
-
+                    a(href='logout') Logout
         ul
             li
                 a(href='/edit') Edit Reservation
@@ -27,12 +26,3 @@ html(lang='en')
                 a(href='/cancelReservation') Cancel Reservation
             li
                 a(href='/userRent') Rent your car
-
-        form(method='POST' action='/editResult')
-            p Pick reservation ID
-            select(name="reservation_id")
-                each item in reservation
-                    option(value=item.id) #{item.id}
-            br
-            br
-            input(type="submit" value="Proceed" )

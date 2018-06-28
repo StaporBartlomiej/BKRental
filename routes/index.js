@@ -1,7 +1,7 @@
-var express = require('express');
-var router = express.Router();
-var DateDiff = require('date-diff');
-var model = require('../models/index');
+const express = require('express');
+const router = express.Router();
+const DateDiff = require('date-diff');
+const model = require('../models/index');
 const user_model = model.sequelize.import("../models/user.js");
 const car_type_model = model.sequelize.import("../models/car_type.js");
 const reservations_model = model.sequelize.import("../models/reservations.js");
@@ -15,7 +15,7 @@ createCars();
 // insertIntoUser("Bartek","Stapor",24,"AVH431432","test@gmail.com",123456789);
 
 // Check if user is authenticated
-var auth = function(req, res, next) {
+const auth = function(req, res, next) {
     if (req.session && req.session.user)
         return next();
     else {
@@ -39,7 +39,7 @@ function createCars() {
         console.log(task.get({
         plain: true
     }))
-})
+});
 
     model.cars.create({
         cost_class: 'A+',
@@ -57,7 +57,7 @@ function createCars() {
         plain: true
     }))
 })
-};
+}
 
 router.get('/', function (req, res) {
 
@@ -98,10 +98,10 @@ function updateResservation(bookInDate,bookInPlace,bookOutDate, bookOutPlace, ca
         carId: carId,
         totalPrice: totalprice
     }, {
-        where: {
-            id: reservationId
+            where: {
+                id: reservationId
+            }
         }
-    }
     );
 }
 
@@ -115,20 +115,20 @@ function insertIntoUser(firstName, lastName, age, idCardNumber, email, phone){
         phone: phone
     }).then(task => {
         console.log((task.get({
-        plain: true
-    })))
-});
-};
+            plain: true
+        })))
+    });
+}
 
-router.post('/reserveResult', function (req,res) {
-    var book_in_place = req.body.book_in_place;
-    var book_in_date = req.body.book_in_date;
-    var book_out_place = req.body.book_out_place;
-    var book_out_date = req.body.book_out_date;
-    var chosen_car = req.body.chosen_car;
-    var book_in_date_converted_to_js_format = new Date(book_in_date);
-    var book_out_date_converted_to_js_format = new Date(book_out_date);
-    var isApprovedByAdmin = false;
+router.post('/reserveResult', auth, function (req,res) {
+    const book_in_place = req.body.book_in_place;
+    const book_in_date = req.body.book_in_date;
+    const book_out_place = req.body.book_out_place;
+    const book_out_date = req.body.book_out_date;
+    const chosen_car = req.body.chosen_car;
+    const book_in_date_converted_to_js_format = new Date(book_in_date);
+    const book_out_date_converted_to_js_format = new Date(book_out_date);
+    const isApprovedByAdmin = false;
 
     cars_model.findOne({
         where: {
@@ -138,44 +138,39 @@ router.post('/reserveResult', function (req,res) {
         attributes: ['id','price_per_day']
     }).then( reservation => {
         if(reservation == null) {
-        {
-            var msg = "Car you choose is not available. Choose another one.";
+            const msg = "Car you choose is not available. Choose another one.";
             res.render('error', {title: "Reservation Error", msg: msg});
-        }
-    }
-    else {
-        console.log("Chosen reservation price per day: " + reservation.price_per_day);
-        var totalDaysCarIsRented = new DateDiff(book_out_date_converted_to_js_format, book_in_date_converted_to_js_format).days();
-        var totalPrice = reservation.price_per_day * totalDaysCarIsRented;
-        console.log("Price per day: " + reservation.price_per_day);
-        console.log("Total days reservation is rented: " + totalDaysCarIsRented);
-        console.log("Total price: " + totalPrice);
-        var userId = req.session.user;
-        insertIntoReservations(userId,reservation.id, book_in_date,book_out_date, totalPrice, isApprovedByAdmin, book_in_place, book_out_place);
-        var query = "UPDATE cars SET available = 0 WHERE id = ";
-        model.sequelize.query(query + reservation.id);
-        res.render('reserveResult', {title: "Reservation Details"});
-    }})
+        } else {
+            console.log("Chosen reservation price per day: " + reservation.price_per_day);
+            const totalDaysCarIsRented = new DateDiff(book_out_date_converted_to_js_format, book_in_date_converted_to_js_format).days();
+            const totalPrice = reservation.price_per_day * totalDaysCarIsRented;
+            console.log("Price per day: " + reservation.price_per_day);
+            console.log("Total days reservation is rented: " + totalDaysCarIsRented);
+            console.log("Total price: " + totalPrice);
+            const userId = req.session.user;
+            insertIntoReservations(userId,reservation.id, book_in_date,book_out_date, totalPrice, isApprovedByAdmin, book_in_place, book_out_place);
+            const query = "UPDATE cars SET available = 0 WHERE id = ";
+            model.sequelize.query(query + reservation.id);
+            res.render('reserveResult', {title: "Reservation Details", logged: req.session.user});
+     }})
 
 });
 
 
 router.get('/reserve', auth, function (req,res) {
-
     res.render('reserve', {title: "Reserve", logged: req.session.user});  //test: req.body.book_out_place
-
 });
 
 router.get('/displayMyReservations', auth, function (req, res) {
 
-    var userId = req.session.user;
+    const userId = req.session.user;
     reservations_model.findAll({
         where: {
             userId: userId
         }
     }).then(reservation => {
         if(reservation == null){
-            var msg = "Użytkownik nie ma żadnych rezerwacji.";
+            const msg = "Użytkownik nie ma żadnych rezerwacji.";
             res.render('error', {title: "Error", msg: msg});
         } else {
             console.log("Reservations: " + reservation);
@@ -187,52 +182,52 @@ router.get('/displayMyReservations', auth, function (req, res) {
 router.get('/cancelReservation', auth,  function (req,res) {
 
     console.log("start");
-    var userId = req.session.user;
+    const userId = req.session.user;
     reservations_model.findAll({
         where: {
             userId: userId
         }
     }).then(reservation => {
         console.log("in findall before if");
-        if(reservation == null){
+        if(reservation == null) {
             console.log("in if");
-        var msg = "User did not make any reservations.";
+        const msg = "User did not make any reservations.";
         res.render('error', {title: "Error", msg: msg});
         } else {
             console.log("in else");
             console.log("Reservations: " + reservation);
             res.render('cancelReservation', {title: "Cancel Reservation", reservation: reservation, logged: req.session.user});
         }
-        });
+    });
 });
 
-router.post('/cancelReservationResult',function (req, res) {
-    var chosen_reservation = req.body.chosen_reservation;
+router.post('/cancelReservationResult', auth, function (req, res) {
+    const chosen_reservation = req.body.chosen_reservation;
     reservations_model.findAll({
         where: {
             id: chosen_reservation
         }
     }).then(reservation => {
         if(reservation == null){
-            var msg = "Chosen reservation does not exist! Please choose other one.";
+            const msg = "Chosen reservation does not exist! Please choose other one.";
             res.render('error', {title: "Error", msg: msg});
         } else {
-            var query = "DELETE FROM reservations WHERE id = ";
+            const query = "DELETE FROM reservations WHERE id = ";
             model.sequelize.query(query + chosen_reservation);
-            res.render('cancelReservationResult', {title: "Cancel Reservation Info"});
+            res.render('cancelReservationResult', {title: "Cancel Reservation Info", logged: req.session.user});
         }
     });
 });
 
 router.get('/edit', auth, function (req, res) {
-    var userId = req.session.user;
+    const userId = req.session.user;
     reservations_model.findAll({
         where: {
             userId: userId
         }
     }).then(reservation => {
         if(reservation == null){
-            var msg = "Użytkownik nie ma żadnych rezerwacji.";
+            const msg = "Użytkownik nie ma żadnych rezerwacji.";
             res.render('error', {title: "Error", msg: msg});
         } else {
             console.log("Reservations: " + reservation);
@@ -241,19 +236,19 @@ router.get('/edit', auth, function (req, res) {
     });
 });
 
-router.post('/editResult', function (req, res) {
+router.post('/editResult', auth, function (req, res) {
     console.log("Res id: " + req.body.reservation_id);
-    res.render('editResult', {title: "Edit result 2", reservation_id: req.body.reservation_id})
+    res.render('editResult', {title: "Edit result 2", reservation_id: req.body.reservation_id, logged: req.session.user})
 });
 
-router.post('/editResult2', function (req, res) {
+router.post('/editResult2', auth, function (req, res) {
 
-    var book_in_place = req.body.book_in_place;
-    var book_in_date = req.body.book_in_date;
-    var book_out_place = req.body.book_out_place;
-    var book_out_date = req.body.book_out_date;
-    var book_in_date_converted_to_js_format = new Date(book_in_date);
-    var book_out_date_converted_to_js_format = new Date(book_out_date);
+    const book_in_place = req.body.book_in_place;
+    const book_in_date = req.body.book_in_date;
+    const book_out_place = req.body.book_out_place;
+    const book_out_date = req.body.book_out_date;
+    const book_in_date_converted_to_js_format = new Date(book_in_date);
+    const book_out_date_converted_to_js_format = new Date(book_out_date);
 
     console.log("ResevationID: " + req.body.reservation_id);
     console.log("ResevationID: " + book_in_date);
@@ -267,11 +262,11 @@ router.post('/editResult2', function (req, res) {
     }).then( reservation => {
         if(reservation == null){
             console.log("Res content: " + reservation);
-            var msg = "Wybrane rezerwacja nie istnieje";
+            const msg = "Wybrane rezerwacja nie istnieje";
             res.render('error', {title: "Reservation Error", msg: msg});
 
         } else {
-            var query = "UPDATE cars SET available = 1 WHERE id = ";
+            const query = "UPDATE cars SET available = 1 WHERE id = ";
             model.sequelize.query(query + reservation.carId);
             console.log(query);
 
@@ -282,18 +277,18 @@ router.post('/editResult2', function (req, res) {
                 attributes: ['price_per_day']
             }).then( car => {
                 if(car == null) {
-                    var msg = "Car you choose is not available. Choose another one.";
+                    const msg = "Car you choose is not available. Choose another one.";
                     res.render('error', {title: "Reservation Error", msg: msg});
                 } else {
                     console.log("Chosen reservation price per day: " + car.price_per_day);
-                    var totalDaysCarIsRented = new DateDiff(book_out_date_converted_to_js_format, book_in_date_converted_to_js_format).days();
-                    var totalPrice = car.price_per_day * totalDaysCarIsRented;
+                    const totalDaysCarIsRented = new DateDiff(book_out_date_converted_to_js_format, book_in_date_converted_to_js_format).days();
+                    const totalPrice = car.price_per_day * totalDaysCarIsRented;
                     console.log("Price per day: " + car.price_per_day);
                     console.log("Total days reservation is rented: " + totalDaysCarIsRented);
                     console.log("Total price: " + totalPrice);
-                    var userId = req.session.user;
+                    const userId = req.session.user;
                     updateResservation(book_in_date,book_in_place, book_out_date,book_out_place,car.id,req.body.reservation_id,totalPrice);
-                    res.render('editResult2', {title: "Edit Result"});
+                    res.render('editResult2', {title: "Edit Result", logged: req.session.user});
                 }})
         }})
 });
@@ -393,24 +388,24 @@ router.post('/register', function(req, res) {
         if (email != null) {
             res.send("User exists already");
         } else {
-            var user_data = {
+            const user_data = {
                 password : req.body.password,
                 firstName : req.body.firstname,
                 lastName : req.body.lastname,
                 email: req.body.email
             };
 
-            var user = new user_model(user_data);
+            const user = new user_model(user_data);
             user.save();
         }
     });
-    res.redirect('/login');
+    res.render('login', {registrationSuccess: "Registration Successful"});
 });
 
 
 router.get('/admin', function(req, res) {
-    user_model.hasMany(reservations_model, {foreignKey: 'userId'})
-    reservations_model.belongsTo(user_model, {foreignKey: 'id'})
+    user_model.hasMany(reservations_model, {foreignKey: 'userId'});
+    reservations_model.belongsTo(user_model, {foreignKey: 'id'});
 
     reservations_model.findAll().then(reservation => {
         console.log(reservation);
@@ -421,7 +416,7 @@ router.get('/admin', function(req, res) {
 router.post('/admin/update/id=:id', function(req, res) {
     const reservation_id = req.params.id;
 
-    var query = "UPDATE reservations SET isApprovedByAdmin = 1 WHERE id = '" + reservation_id + "'";
+    const query = "UPDATE reservations SET isApprovedByAdmin = 1 WHERE id = '" + reservation_id + "'";
     model.sequelize.query(query);
     res.redirect('/admin');
 
@@ -440,6 +435,10 @@ router.post('/admin/cancel/id=:id', function(req, res) {
 
 router.get('/user', auth, function(req, res) {
    res.render('user', {logged: req.session.user});
+});
+
+router.get('/userRent', auth, function(req, res) {
+   res.render('userRent', {logged: req.session.user})
 });
 
 module.exports = router;
